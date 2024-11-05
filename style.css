@@ -280,12 +280,25 @@ section {
     justify-content: center;
     flex-direction: column;
 }
+
 .about-containers, .about-details-container {
     display: flex;
 }
 
 .about-pic {
     border-radius: 2rem;
+}
+
+.section__pic-container-about {
+    display: flex;
+    height: 400px;
+    width: 400px;
+    margin: auto 0;
+}
+
+.section__pic-container-about img{
+    border-radius: 50px;
+    object-fit: cover;
 }
 
 .arrow {
@@ -430,4 +443,51 @@ footer {
 
 footer p {
     text-align: center;
+}
+
+
+
+
+/* ADDITIONAL */
+
+/* Hover box */
+.details-container:hover, 
+.color-container:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+/* Rotating Circle */
+.profile-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+}
+
+.circle-animation {
+    position: absolute;
+    width: 420px; /* Make the circle larger */
+    height: 420px;
+    border-radius: 50%;
+    border: 4px dashed #00FFAA; /* Adjust color and thickness */
+    animation: rotate 30s linear infinite; /* Animation speed */
+    z-index: 0;
+    opacity: 0.8;
+    top: 58.9%; /* Center vertically */
+    left: 39.13%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust position to keep centered */
+}
+
+/* Rotation animation */
+@keyframes rotate {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
 }
