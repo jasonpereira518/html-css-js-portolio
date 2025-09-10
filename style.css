@@ -55,7 +55,7 @@ a:hover {
     color: grey;
     text-decoration: underline;
     text-underline-offset: 1rem;
-    text-decoration-color: rgb(181, 181, 181);
+    text-decoration-color: #00FFAA;
 }
 
 .logo {
@@ -178,7 +178,7 @@ section {
 }
 
 .section__pic-container img{
-    border-radius: 50%;
+    border-radius: 50px;
     object-fit: cover;
 }
 
@@ -187,7 +187,7 @@ section {
     text-align: center;
 }
 
-.section__text p{
+.section__text p {
     font-weight: 600;
 }
 
@@ -289,18 +289,6 @@ section {
     border-radius: 2rem;
 }
 
-.section__pic-container-about {
-    display: flex;
-    height: 400px;
-    width: 400px;
-    margin: auto 0;
-}
-
-.section__pic-container-about img{
-    border-radius: 50px;
-    object-fit: cover;
-}
-
 .arrow {
     position: absolute;
     right: -5rem;
@@ -328,7 +316,9 @@ section {
     margin: auto 0;
 }
 
-/* EXPERIENCE SECTION*/
+
+
+/* EXPERIENCE SECTION */
 
 #experience {
     position: relative;
@@ -389,7 +379,7 @@ article.icon {
     color: black;
 }
 
-.project-ibtn {
+.project-btn {
     color: black;
     border-color: rgb(163, 163, 163);
 }
@@ -434,7 +424,7 @@ article.icon {
     height: 2.5rem;
 }
 
-/* FOOTER SECTION*/
+/* FOOTER SECTION */
 
 footer {
     height: 26vh;
@@ -458,11 +448,19 @@ footer p {
     transition: all 0.3s ease;
 }
 
-/* Rotating Circle */
+
+/* Rotating Circle 
+.section__pic-container {
+    position: relative;
+    width: 300px; 
+    height: 300px;
+    margin: auto;
+}
+
 .profile-photo {
+    border-radius: 50%;
     width: 100%;
     height: 100%;
-    border-radius: 50%;
     object-fit: cover;
     position: relative;
     z-index: 1;
@@ -470,19 +468,18 @@ footer p {
 
 .circle-animation {
     position: absolute;
-    width: 420px; /* Make the circle larger */
-    height: 420px;
+    top: 50%;
+    left: 50%;
+    width: 120%; 
+    height: 120%;
     border-radius: 50%;
-    border: 4px dashed #00FFAA; /* Adjust color and thickness */
-    animation: rotate 30s linear infinite; /* Animation speed */
+    border: 4px dashed #00FFAA;
+    animation: rotate 30s linear infinite;
+    transform: translate(-50%, -50%);
     z-index: 0;
     opacity: 0.8;
-    top: 58.9%; /* Center vertically */
-    left: 39.13%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Adjust position to keep centered */
 }
 
-/* Rotation animation */
 @keyframes rotate {
     0% {
         transform: translate(-50%, -50%) rotate(0deg);
@@ -490,4 +487,4 @@ footer p {
     100% {
         transform: translate(-50%, -50%) rotate(360deg);
     }
-}
+}*/

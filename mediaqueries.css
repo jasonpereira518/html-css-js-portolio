@@ -1,4 +1,4 @@
-@media screen and (max-width: 1400) {
+@media screen and (max-width: 1400px) {
     #profile {
         height: 83vh;
         margin-bottom: 6rem;
@@ -9,10 +9,10 @@
 }
 
 @media screen and (max-width: 1200px) {
-    #desktop-nav{
+    #desktop-nav {
         display: none;
     }
-    #hamburger-nav{
+    #hamburger-nav {
         display: flex;
     }
     #experience, .experience-details-container {
@@ -27,7 +27,7 @@
     section, .section-container {
         height: fit-content;
     }
-    section{
+    section {
         margin: 0 5%;
     }
     .section__pic-container {
@@ -48,6 +48,7 @@
         height: 83vh;
         margin-bottom: 0;
     }
+
     #footer nav {
         height: fit-content;
         margin-bottom: 2rem;
@@ -88,3 +89,5 @@
         margin: .4rem;
     }
 }
+
+
