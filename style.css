@@ -116,6 +116,12 @@ a:hover {
     transition: all 0.3 ease-in-out;
 }
 
+.menu-links a:hover {
+    text-decoration: underline;
+    text-decoration-color: #00FFAA;
+    text-underline-offset: 0.5rem;
+}
+
 .menu-links li {
     list-style: none;
 }
@@ -213,6 +219,15 @@ section {
     justify-content: center;
     margin-top: 1rem;
     gap: 1rem;
+}
+
+#socials-container .icon {
+    border-radius: 50%;
+}
+
+#socials-container .icon:hover {
+    outline: 3px solid #00FFAA;
+    outline-offset: 2px;
 }
 
 /* ICONS*/
