@@ -283,6 +283,12 @@ section {
     gap: 1rem;
 }
 
+.btn.disabled {
+  pointer-events: none;
+  opacity: 0.55;
+  cursor: not-allowed !important;
+}
+
 /* ABOUT SECTION */
 #about {
     position: relative;
