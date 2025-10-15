@@ -5,7 +5,7 @@
 Welcome to the repository for my personal portfolio website!  
 This site is designed to showcase my **experience, projects, leadership, and contact information** in a clean, user-friendly way.  
 
-🔗 **Live Site:** https://jasonpereira.netlify.app/
+🔗 **Live Site:** [https://jasonpereira.netlify.app/](http://jasonpereira.netlify.app/?src=li)
 
 ---
 
