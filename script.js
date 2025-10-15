@@ -224,6 +224,88 @@ document.addEventListener("mousemove", (e) => {
 });
 
 
+document.addEventListener("DOMContentLoaded", () => {
+  const el = document.getElementById("last-updated");
+  if (el) {
+    const date = new Date(document.lastModified);
+    const formatted = date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    });
+    el.textContent = `Last updated: ${formatted}`;
+  }
+});
+
+
+console.log("%c👋 Hey there! Curious dev? Let's connect on LinkedIn!!", 
+  "color:#00aaff; font-size:16px; font-weight:bold;"
+);
+console.log("%c🔗 https://www.linkedin.com/in/jasonpereira518/", 
+  "color:#0077b5; font-size:14px; text-decoration:underline;"
+);
+
+// ===== Scroll Highlighting using IntersectionObserver =====
+document.addEventListener("DOMContentLoaded", () => {
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll(".nav-links a");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const id = entry.target.getAttribute("id");
+        const link = document.querySelector(`.nav-links a[href="#${id}"]`);
+
+        if (entry.isIntersecting) {
+          navLinks.forEach((el) => el.classList.remove("active"));
+          link.classList.add("active");
+        }
+      });
+    },
+    {
+      threshold: 0.4, // 40% of section visible = active
+    }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+});
+
+
+
+// Scroll progress bar
+(function () {
+  const bar = document.getElementById('scroll-progress');
+  if (!bar) return;
+
+  let ticking = false;
+
+  function updateBar() {
+    const doc = document.documentElement;
+    const scrollTop = window.pageYOffset || doc.scrollTop || 0;
+    const max = (doc.scrollHeight - doc.clientHeight) || 1; // avoid divide-by-zero
+    const pct = Math.min(100, Math.max(0, (scrollTop / max) * 100));
+    bar.style.width = pct + '%';
+    ticking = false;
+  }
+
+  function requestTick() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(updateBar);
+    }
+  }
+
+  window.addEventListener('scroll', requestTick, { passive: true });
+  window.addEventListener('resize', requestTick);
+  window.addEventListener('load', requestTick);
+
+  // Initial paint
+  updateBar();
+})();
+
+
+
+
 /*
 // =============================
 document.addEventListener("DOMContentLoaded", () => {

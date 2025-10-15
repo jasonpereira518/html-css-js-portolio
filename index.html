@@ -22,6 +22,7 @@
                 <li><a href="#experience">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#leadership">Leadership</a></li>
+                <li><a href="#education">Education</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -39,10 +40,12 @@
                 <li><a href="#experience" onclick="toggleMenu()">Skills</a></li>
                 <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
                 <li><a href="#leadership" onclick="toggleMenu()">Leadership</a></li>
+                <li><a href="#education" onclick="toggleMenu()">Education</a></li>
                 <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
             </div>
         </div>
     </nav>
+    <div id="scroll-progress" aria-hidden="true"></div>
     <section id="profile" data-aos="zoom-in">
         <div class="section__pic-container">
             <!--<div class="circle-animation"></div>-->
@@ -62,9 +65,14 @@
             </div>
         </div>
     </section>
+    <!-- <section id="lanyard">
+        <div class="lanyard-embed">
+            <iframe src="./lanyard-widget/dist/index.html" title="Lanyard" loading="lazy"></iframe>
+        </div>
+    </section> -->    
     <section id="about">
         <p class="section__text__p1">Get To Know More</p>
-        <h1 class="title" style="margin-bottom: -4rem;">About Me</h1>
+        <h1 class="title">About Me</h1>
         <div class="section-container">
             <div class="section__pic-container">
                 <img src="./assets/jabout-pic.JPEG" alt="Profile picture" class="about-pic"  data-aos="zoom-in">
@@ -73,15 +81,16 @@
                 <div class="about-containers">
                     <div class="details-container">
                         <img src="./assets/experience.png" alt="Experience icon" class="icon">
-                        <h3>Experience</h3>
+                        <h3>Desired Experience</h3>
                         <h4 style="color: #545454;">Seeking internship opportunities</h4>
                         <p>Software Engineer, Fullstack Development,<br />AI/ML Engineer, Data Analytics</p>
                     </div>
                     <div class="details-container">
                         <img src="./assets/education.png" alt="Education icon" class="icon">
-                        <h3>Education</h3>
+                        <h3>Current Education</h3>
                         <h4 style="color: #545454;">Junior</h4>
                         <p>UNC Chapel Hill<br />B.S. Computer Science, B.S. Statistics and Analytics</p>
+                        <p>Business Minor</p>
                     </div>
                 </div>
                 <div class="text-container">
@@ -307,7 +316,7 @@
             </div>
             </div>-->
         </div>
-        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#contact'">
+        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#leadership'">
     </section>
     <section id="leadership">
         <p class="section__text__p1" style="margin-top: 10rem;">How I am Involved</p>
@@ -334,7 +343,7 @@
                 <div class="about-containers">
                     <div class="details-container">
                         <img src="./assets/OldWell.png" alt="BPSS" class="icon">
-                        <h3>Buckley Public Service Schoars</h3>
+                        <h3>Buckley Public Service Scholar</h3>
                         <h4 style="color: #545454;">Carolina Center for Public Service</h4>
                         <p>• Completed Orientation and Skills Training<br/>• Working towards 300+ service hours and BPSS Graduation</p>
                     </div>
@@ -347,8 +356,63 @@
                 </div>
             </div>
         </div>
-        <!-- <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#contact'"> -->
-    </section>    
+        <!-- <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#education'" style="float: right;"> -->
+    </section>
+    <section id="education">
+    <p class="section__text__p1" style="margin-top: 8rem;">Where I’ve Studied</p>
+    <h1 class="title">Education</h1>
+
+    <ol class="edu-timeline" role="list">
+        <!-- UNC Chapel -->
+        <li class="edu-item" data-aos="fade-up">
+        <div class="edu-marker" aria-hidden="true"></div>
+        <div class="edu-card">
+            <img src="./assets/OldWell.png" alt="UNC logo" class="edu-logo" style="height: 2.4rem">
+            <h3 class="edu-school" style="color:#4B9CD3;">University of North Carolina at Chapel Hill</h3>
+            <p class="edu-degree">B.S. Computer Science · B.S. Statistics & Analytics · Business Minor</p>
+            <p class="edu-years">2025 — 2027 (expected)</p>
+            <ul class="edu-highlights">
+            <li>Buckley Public Service Scholar</li>
+            <li>CS + Social Good · App Team Carolina</li>
+            <li>FBLA-C · TEDxUNC · UNC NPS</li>
+            </ul>
+        </div>
+        </li>
+
+        <!-- CPCC -->
+        <li class="edu-item" data-aos="fade-up" data-aos-delay="200">
+        <div class="edu-marker" aria-hidden="true"></div>
+        <div class="edu-card">
+            <img src="./assets/cpcc_logo.png" alt="UNC logo" class="edu-logo" style="height: 2rem">
+            <h3 class="edu-school" style="color: #AA985D;">Central Piedmont Community College</h3>
+            <p class="edu-degree">Dual Enrollment · Associate's in Arts</p>
+            <p class="edu-years">2023 — 2025</p>
+            <ul class="edu-highlights">
+            <li>4.0 GPA · Named to President's List</li>
+            <li>CSC249 Data Structure & Algorithms, MAT273 Calculus III, MAT280 Linear Algebra</li>
+            </ul>
+        </div>
+        </li>
+
+        <!-- AKHS -->
+        <li class="edu-item" data-aos="fade-up" data-aos-delay="400">
+        <div class="edu-marker" aria-hidden="true"></div>
+        <div class="edu-card">
+            <img src="./assets/ardreykell_logo.png" alt="UNC logo" class="edu-logo" style="height: 1.4rem">
+            <h3 class="edu-school" style="color:#4B0082;">Ardrey Kell High School</h3>
+            <p class="edu-degree">High School Diploma</p>
+            <p class="edu-years">2021 — 2025</p>
+            <ul class="edu-highlights">
+            <li>Eagle Scout · Junior Assistant Scoutmaster</li>
+            <li>UNCC Data Science Researcher · Presented at 2024 NCCTM Conference</li>
+            <li>FBLA VP of Competition · Key Club Cofounder</li>
+            <li>USTA Tennis · Various STEM Mentoring</li></li>
+            </ul>
+        </div>
+        </li>
+        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#contact'">
+    </ol>
+    </section>
     <section id="contact">
         <p class="section__text__p1">Get in Touch</p>
         <h1 class="title">Contact Me</h1>
@@ -390,11 +454,13 @@
                     <li><a href="#experience">Skills</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#leadership">Leadership</a></li>
+                    <li><a href="#education">Education</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
         </nav>
         <p>Copyright &#169; 2025 Jason Pereira. All Rights Reserved</p>
+        <p style="font-size:0.8rem" id="last-updated"></p>
     </footer>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
@@ -403,6 +469,15 @@
         once: true,
         offset: 100
     });
+    </script>
+    <script>
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+
+        window.onbeforeunload = () => {
+            window.scrollTo(0, 0);
+        };
     </script>
     <script src="script.js"></script>
 </body>

@@ -21,6 +21,11 @@
     #profile, .section-container {
         display: block;
     }
+
+    #profile {
+        margin-top: 1rem;
+    }
+
     .arrow {
         display: none;
     }
@@ -47,6 +52,7 @@
     #profile {
         height: 83vh;
         margin-bottom: 0;
+        margin-top: 4rem;
     }
 
     #footer nav {
