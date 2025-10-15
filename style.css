@@ -45,6 +45,20 @@ nav {
     font-size: 1.5rem;
 }
 
+/*
+.nav-links a.active {
+  color: #000;                        
+  text-decoration: underline;
+  text-decoration-color: #00FFAA;     
+  text-underline-offset: 0.75rem;
+}
+
+.menu-links a.active {
+  text-decoration: underline;
+  text-decoration-color: #00FFAA;
+  text-underline-offset: 0.5rem;
+}*/
+
 a {
     color: black;
     text-decoration: none;
@@ -319,6 +333,10 @@ section {
     bottom: 2.5rem;
 }
 
+.arrow:hover {
+  transform: translateY(2px);
+}
+
 .details-container {
     padding: 1.5rem;
     flex: 1;
@@ -472,6 +490,78 @@ footer p {
     transition: all 0.3s ease;
 }
 
+/* Typewriter Effect */
+#typewriter {
+  display: inline-block;
+  border-right: 2px solid #13294B; /* Carolina Blue accent */
+  white-space: nowrap;
+  overflow: hidden;
+  font-weight: 600;
+  animation: blink 0.7s steps(2, start) infinite;
+  vertical-align: bottom;
+  padding-left: 0;     /* no extra space on the left */
+  padding-right: 3px;  /* tiny gap before the blinking cursor */
+  margin-left: 0;
+  margin-right: 0;
+}
+
+@keyframes blink {
+  to {
+    border-color: transparent;
+  }
+}
+
+/* Filter Buttons */
+.filter-bar {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0 2rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgb(163,163,163);
+  background: #fff;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .15s ease, background-color .2s ease, color .2s ease, box-shadow .2s ease;
+}
+
+.filter-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0,0,0,.08);
+}
+
+.filter-btn.active {
+  background: rgb(53,53,53);
+  color: white;
+  border-color: rgb(53,53,53);
+  transform: translateY(-1px);
+}
+
+/* Hide filtered cards smoothly */
+.project-card {
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+}
+
+.project-card.is-hidden {
+  opacity: 0;
+  transform: scale(.98);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Optional: grid feel when many cards */
+.experience-details-container .about-containers {
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
 
 /* Rotating Circle 
 .section__pic-container {
@@ -512,3 +602,80 @@ footer p {
         transform: translate(-50%, -50%) rotate(360deg);
     }
 }*/
+
+/*
+body {
+  cursor: none;
+}
+
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  background-color: #13294B; 
+  border-radius: 50%;
+  pointer-events: none; /
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+  z-index: 9999;
+  transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
+}
+
+a:hover ~ .custom-cursor,
+button:hover ~ .custom-cursor,
+.icon:hover ~ .custom-cursor {
+  width: 40px;
+  height: 40px;
+  background: #4B9CD3;
+  transform: translate(-50%, -50%) scale(1.5);
+
+}
+*/
+
+/* Contact form layout
+.contact-form {
+  display: grid;
+  gap: 0.8rem;
+  max-width: 680px;
+  width: 100%;
+  margin: 1rem auto 0;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgb(163,163,163);
+  border-radius: 12px;
+  font: inherit;
+  outline: none;
+  transition: box-shadow .2s ease, border-color .2s ease;
+  background: #fff;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #00FFAA;
+  box-shadow: 0 0 0 3px rgba(0,255,170,0.18);
+}
+
+.contact-form .btn {
+  width: fit-content;
+  padding: 0.8rem 1.4rem;
+}
+
+.cf-status {
+  min-height: 1.2rem;
+  font-size: 0.95rem;
+}
+
+#cf-submit[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+ */
+ 

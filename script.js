@@ -114,3 +114,192 @@ function toggleMenu() {
     }
   });
 })();
+
+// Header Typewriter Effect
+document.addEventListener("DOMContentLoaded", function () {
+  const target = document.getElementById("typewriter");
+  const phrases = [
+    "Software Engineer",
+    "Data Scientist",
+    "Full-Stack Developer",
+    "Life-Long Learner"
+  ];
+
+  let phraseIndex = 0;
+  let letterIndex = 0;
+  let isDeleting = false;
+  const typingSpeed = 100;   // ms per letter
+  const deletingSpeed = 60;  // ms per letter
+  const delayBetween = 1200; // pause between phrases
+
+  function type() {
+    const currentPhrase = phrases[phraseIndex];
+    if (!isDeleting) {
+      // typing
+      target.textContent = currentPhrase.slice(0, letterIndex + 1);
+      letterIndex++;
+      if (letterIndex === currentPhrase.length) {
+        isDeleting = true;
+        setTimeout(type, delayBetween);
+        return;
+      }
+    } else {
+      // deleting
+      target.textContent = currentPhrase.slice(0, letterIndex - 1);
+      letterIndex--;
+      if (letterIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+      }
+    }
+    const speed = isDeleting ? deletingSpeed : typingSpeed;
+    setTimeout(type, speed);
+  }
+
+  type();
+});
+
+
+// ===== Project Filters =====
+document.addEventListener('DOMContentLoaded', () => {
+  const buttons = Array.from(document.querySelectorAll('.filter-btn'));
+  const cards   = Array.from(document.querySelectorAll('.project-card'));
+  const activeFilters = new Set();
+
+  function applyFilters() {
+    // If no filters selected, show all
+    if (activeFilters.size === 0) {
+      cards.forEach(card => card.classList.remove('is-hidden'));
+      return;
+    }
+
+    cards.forEach(card => {
+      const tags = (card.getAttribute('data-cat') || '')
+        .toLowerCase()
+        .split(/\s+/);
+      // show if card has ANY selected tag
+      const show = [...activeFilters].some(tag => tags.includes(tag));
+      card.classList.toggle('is-hidden', !show);
+    });
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = (btn.getAttribute('data-filter') || '').toLowerCase();
+
+      if (cat === 'all') {
+        // Reset everything if "All" clicked
+        activeFilters.clear();
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        applyFilters();
+        return;
+      }
+
+      // Toggle button state
+      btn.classList.toggle('active');
+      const isActive = btn.classList.contains('active');
+
+      // Manage "All" button state
+      const allBtn = buttons.find(b => b.dataset.filter === 'all');
+      if (isActive) activeFilters.add(cat);
+      else activeFilters.delete(cat);
+      if (allBtn) allBtn.classList.remove('active');
+
+      // Apply filters
+      applyFilters();
+    });
+  });
+
+  // Start with "All" active
+  applyFilters();
+});
+
+document.addEventListener("mousemove", (e) => {
+  const cursor = document.querySelector(".custom-cursor");
+  if (cursor) {
+    cursor.style.top = `${e.clientY}px`;
+    cursor.style.left = `${e.clientX}px`;
+  }
+});
+
+
+/*
+// =============================
+document.addEventListener("DOMContentLoaded", () => {
+  // Load EmailJS credentials (from environment or fallback config.js)
+  const EMAILJS_PUBLIC_KEY =
+    import.meta?.env?.VITE_EMAILJS_PUBLIC_KEY || window?.env?.EMAILJS_PUBLIC_KEY;
+  const EMAILJS_SERVICE_ID =
+    import.meta?.env?.VITE_EMAILJS_SERVICE_ID || window?.env?.EMAILJS_SERVICE_ID;
+  const EMAILJS_TEMPLATE_ID =
+    import.meta?.env?.VITE_EMAILJS_TEMPLATE_ID || window?.env?.EMAILJS_TEMPLATE_ID;
+
+  if (!EMAILJS_PUBLIC_KEY || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID) {
+    console.error("❌ Missing EmailJS credentials! Check your .env or config.js file.");
+    return;
+  }
+
+  // Initialize EmailJS
+  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+  // Form elements
+  const form = document.getElementById("contact-form");
+  const submitBtn = document.getElementById("cf-submit");
+  const statusEl = document.getElementById("cf-status");
+
+  if (!form) return; // If contact form isn't on page
+
+  let lastSentAt = 0; // basic rate-limit
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("cf-name")?.value.trim();
+    const email = document.getElementById("cf-email")?.value.trim();
+    const subject = document.getElementById("cf-subject")?.value.trim();
+    const message = document.getElementById("cf-message")?.value.trim();
+    const honey = document.getElementById("cf-company")?.value.trim(); // honeypot
+
+    // Stop bots or invalid submissions
+    if (honey !== "" || !name || !email || !message) {
+      statusEl.textContent = "Please fill out all required fields.";
+      return;
+    }
+
+    // Rate-limit (10 seconds)
+    const now = Date.now();
+    if (now - lastSentAt < 10000) {
+      statusEl.textContent = "Please wait a few seconds before sending again.";
+      return;
+    }
+
+    // UI feedback
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
+    statusEl.textContent = "";
+
+    try {
+      const params = {
+        from_name: name,
+        reply_to: email,
+        subject: subject || "(No subject)",
+        message: message,
+      };
+
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
+
+      statusEl.textContent = "Message sent! I’ll get back to you soon.";
+      form.reset();
+      lastSentAt = now;
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      statusEl.textContent = "Something went wrong. Please try again.";
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Send";
+    }
+  });
+});
+
+*/

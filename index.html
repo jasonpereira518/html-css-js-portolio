@@ -8,14 +8,18 @@
     <link rel="icon" type="image/x-icon" href="./assets/jabout-pic-modified.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="mediaqueries.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
 </head>
+
 <body>
+    <!-- <div class="custom-cursor"></div> -->
     <nav id="desktop-nav">
         <div class="logo">Jason Pereira</div>
         <div>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
+                <li><a href="#experience">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#leadership">Leadership</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -32,14 +36,14 @@
             </div>
             <div class="menu-links">
                 <li><a href="#about" onclick="toggleMenu()">About</a></li>
-                <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+                <li><a href="#experience" onclick="toggleMenu()">Skills</a></li>
                 <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
                 <li><a href="#leadership" onclick="toggleMenu()">Leadership</a></li>
                 <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
             </div>
         </div>
     </nav>
-    <section id="profile">
+    <section id="profile" data-aos="zoom-in">
         <div class="section__pic-container">
             <!--<div class="circle-animation"></div>-->
             <img src="./assets/jprofile-pic-modified.png" alt="Jason Pereira profile picture">
@@ -47,7 +51,7 @@
         <div class="section__text">
             <p class="section__text__p1">Hello, I'm</p>
             <h1 class="title" style="margin-bottom: 0rem;">Jason Pereira</h1>
-            <p class="section__text__p2">Software Engineer</p>
+            <p class="section__text__p2" id="typewriter"></p>
             <div class="btn-container">
                 <button id="resume-btn" class="btn btn-color-2" data-href="./assets/Jason_Pereira.pdf">Resume</button>
                 <button class="btn btn-color-1" onclick="location.href='./#contact'">Contact Info</button>
@@ -63,7 +67,7 @@
         <h1 class="title" style="margin-bottom: -4rem;">About Me</h1>
         <div class="section-container">
             <div class="section__pic-container">
-                <img src="./assets/jabout-pic.JPEG" alt="Profile picture" class="about-pic">
+                <img src="./assets/jabout-pic.JPEG" alt="Profile picture" class="about-pic"  data-aos="zoom-in">
             </div>
             <div class="about-details-container">
                 <div class="about-containers">
@@ -71,7 +75,7 @@
                         <img src="./assets/experience.png" alt="Experience icon" class="icon">
                         <h3>Experience</h3>
                         <h4 style="color: #545454;">Seeking internship opportunities</h4>
-                        <p>Software Engineer, Fullstack Development,<br />ML Engineer</p>
+                        <p>Software Engineer, Fullstack Development,<br />AI/ML Engineer, Data Analytics</p>
                     </div>
                     <div class="details-container">
                         <img src="./assets/education.png" alt="Education icon" class="icon">
@@ -105,7 +109,7 @@
                         <article>
                             <img src="./assets/checkmark.png" alt="Experience icon" class="icon">
                             <div>
-                                <h3>HTML/CSS</h3>
+                                <h3>HTML/CSS/JS</h3>
                                 <p>Experienced</p>
                             </div>
                         </article>
@@ -193,9 +197,16 @@
     <section id="projects">
         <p class="section__text__p1">Browse My Recent</p>
         <h1 class="title">Projects</h1>
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="web">Web</button>
+            <button class="filter-btn" data-filter="data">Data/ML</button>
+            <button class="filter-btn" data-filter="ios">iOS</button>
+            <button class="filter-btn" data-filter="coming">Coming Soon</button>
+        </div>
         <div class="experience-details-container"> <!-- Row 1 -->
             <div class="about-containers">
-            <div class="details-container color-container">
+            <div class="details-container color-container project-card" data-cat="ios">
                 <div class="article-container">
                     <img src="./assets/jproject-1.png" alt="Project 1" class="project-img">
                 </div>
@@ -205,7 +216,7 @@
                     <button class="btn btn-color-2 project-btn" onclick="window.open('https://docs.google.com/presentation/d/1QLEhCPe5pVA5YAKiy_k2v0SZ8gZ9jzCr-osNluN_laE/edit?usp=sharing', '_blank')">Live Demo</button>
                 </div>
             </div>
-            <div class="details-container color-container">
+            <div class="details-container color-container project-card" data-cat="data web">
                 <div class="article-container">
                     <img src="./assets/GoldilocksThumbnail.png" alt="Project 2" class="project-img">
                 </div>
@@ -215,7 +226,7 @@
                     <button class="btn btn-color-2 project-btn" onclick="window.open('https://orbit-notes.streamlit.app/', '_blank')">Live Demo</button>
                 </div>
             </div>
-            <div class="details-container color-container">
+            <div class="details-container color-container project-card" data-cat="web">
                 <div class="article-container">
                     <img src="./assets/card1.png" alt="Project 3" class="project-img">
                 </div>
@@ -229,7 +240,7 @@
         </div>
         <div class="experience-details-container"> <!-- Row 2 -->
             <div class="about-containers">
-            <div class="details-container color-container">
+            <div class="details-container color-container project-card" data-cat="ios">
                 <div class="article-container">
                     <img src="./assets/spotifyUI.png" alt="Project 4" class="project-img">
                 </div>
@@ -239,7 +250,7 @@
                     <button class="btn btn-color-2 project-btn" onclick="window.open('https://www.github.com/', '_blank')">Live Demo</button>
                 </div>
             </div>
-            <div class="details-container color-container">
+            <div class="details-container color-container project-card" data-cat="coming web">
                 <div class="article-container">
                     <img src="./assets/TarHeelEats.png" alt="Project 5" class="project-img">
                 </div>
@@ -249,7 +260,7 @@
                     <button class="btn btn-color-2 project-btn" onclick="window.open('https://cardverifier.netlify.app/', '_blank')">Live Demo</button>
                 </div>
             </div>
-            <div class="details-container color-container">
+            <div class="details-container color-container project-card" data-cat="coming">
                 <div class="article-container">
                     <img src="./assets/comingSoon.png" alt="Project 6" class="project-img">
                 </div>
@@ -297,14 +308,13 @@
             </div>-->
         </div>
         <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#contact'">
-
     </section>
     <section id="leadership">
         <p class="section__text__p1" style="margin-top: 10rem;">How I am Involved</p>
-        <h1 class="title">Leadership & Involvement</h1>
+        <h1 class="title" style="margin-bottom: 8rem;">Leadership & Involvement</h1>
         <div class="section-container">
             <div class="section__pic-container">
-                <img src="./assets/marines_award.JPEG" alt="NCCTM Presentation" class="about-pic">
+                <img src="./assets/marines_award.JPEG" alt="NCCTM Presentation" class="about-pic" data-aos="zoom-in-right">
             </div>
             <div class="about-details-container">
                 <div class="about-containers">
@@ -312,13 +322,13 @@
                         <img src="./assets/eagle_logo.png" alt="Boy Scouts" class="icon">
                         <h3>Eagle Scout</h3>
                         <h4 style="color: #545454;">Active Scout for 12+ Years</h4>
-                        <p>32 Merit Badges<br/>Bronze & Gold Eagle Palms<br/>Order of the Arrow Honor Society member<br/>Junior Assistant Scoutmaster</p>
+                        <p>• 32 Merit Badges<br/>• Bronze & Gold Eagle Palms<br/>• Order of the Arrow Honor Society member<br/>• Junior Assistant Scoutmaster</p>
                     </div>
                     <div class="details-container">
                         <img src="./assets/fbla_logo.png" alt="FBLA Win" class="icon">
                         <h3>VP Of Competition</h3>
                         <h4 style="color: #545454;">AKHS FBLA Chapter</h4>
-                        <p>4th Place National Leadership Conference FBLA (2025, Website Design)<br/>1st Place NC States (2025, Website Design)<br/>1st Place NC States (2024, Social Media Strategies)</p>
+                        <p>• 4th Place National Leadership Conference FBLA (2025, Website Design)<br/>• 1st Place NC States (2025, Website Design)<br/>• 1st Place NC States (2024, Social Media Strategies)</p>
                     </div>
                 </div>
                 <div class="about-containers">
@@ -326,18 +336,18 @@
                         <img src="./assets/OldWell.png" alt="BPSS" class="icon">
                         <h3>Buckley Public Service Schoars</h3>
                         <h4 style="color: #545454;">Carolina Center for Public Service</h4>
-                        <p>Completed Orientation and Skills Training</p>
+                        <p>• Completed Orientation and Skills Training<br/>• Working towards 300+ service hours and BPSS Graduation</p>
                     </div>
                     <div class="details-container">
                         <img src="./assets/cssg_logo.png" alt="CS + Social Good" class="icon">
                         <h3>CS + Social Good</h3>
                         <h4 style="color: #545454;">Education Team Member</h4>
-                        <p>Created social-good tech projects for community impact.<br/>Collaborated with a team addressing challenges.<br/>Engaged with peers in workshops and discussions.</p>
+                        <p>• Created social-good tech projects for community impact.<br/>• Collaborated with a team addressing challenges.<br/>• Engaged with peers in workshops and discussions.</p>
                     </div>
                 </div>
             </div>
         </div>
-        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#experience'">
+        <!-- <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#contact'"> -->
     </section>    
     <section id="contact">
         <p class="section__text__p1">Get in Touch</p>
@@ -356,13 +366,28 @@
                 <p><a href="https://www.github.com/jasonpereira518/">Github</a></p>
             </div>
         </div>
+        <!-- Contact Form
+        <form id="contact-form" class="contact-form" novalidate>
+            <input type="text" name="from_name" id="cf-name" placeholder="Your Name" required aria-label="Your Name" />
+            <input type="email" name="reply_to" id="cf-email" placeholder="Your Email" required aria-label="Your Email" />
+            <input type="text" name="subject" id="cf-subject" placeholder="Subject (optional)" aria-label="Subject" />
+            <textarea name="message" id="cf-message" rows="6" placeholder="Your Message" required aria-label="Your Message"></textarea>
+
+            
+            <input type="text" name="company" id="cf-company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;" aria-hidden="true" />
+
+            <button type="submit" id="cf-submit" class="btn btn-color-1">Send</button>
+
+            
+            <p id="cf-status" class="cf-status" role="status" aria-live="polite"></p>
+        </form> -->
     </section>
     <footer id="footer">
         <nav>
             <div class="nav-links-container">
                 <ul class="nav-links">
                     <li><a href="#about">About</a></li>
-                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#experience">Skills</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#leadership">Leadership</a></li>
                     <li><a href="#contact">Contact</a></li>
@@ -371,6 +396,14 @@
         </nav>
         <p>Copyright &#169; 2025 Jason Pereira. All Rights Reserved</p>
     </footer>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+    AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 100
+    });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
