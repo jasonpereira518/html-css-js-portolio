@@ -116,7 +116,41 @@ a {
 /* HAMBURGER MENU */
 
 #hamburger-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 3000;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
     display: none;
+    padding: 4vh 5vh 4vh;
+}
+
+#hamburger-nav .menu-links {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 3100;
+  background: rgba(255,255,255,0.98);
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.18);
+  
+  max-height: 0;
+  overflow: hidden;
+
+  transition: max-height 0.3s ease;
+}
+
+#hamburger-nav .menu-links.open {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+@media (max-width: 900px) {
+  html { scroll-padding-top: 80px; }
 }
 
 .hamburger-menu {
@@ -222,7 +256,7 @@ section {
     justify-content: center;
     gap: 5rem;
     height: 80vh;
-    margin-top: 9rem;
+    margin-top: 8.2rem;
 }
 
 .section__pic-container {
@@ -752,6 +786,60 @@ footer p {
     print-color-adjust: exact;
   }
 }
+
+
+/* === Animated Skill Bars === */
+.skills-grid {
+  display: grid;
+  gap: 1rem;
+  max-width: 760px;
+  margin: 1.5rem auto 0;
+}
+
+.skill {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+}
+
+.skill-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.skill-num {
+  font-weight: 700;
+  color: #13294B; /* deep navy from your palette */
+  font-size: 0.95rem;
+}
+
+.skill-bar {
+  height: 10px;
+  background: rgb(240,240,240);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.skill-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #00FFAA, #13294B);
+  transition: width 1.2s ease; /* JS sets width, CSS animates it */
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .skill-fill { transition: none; }
+}
+
+
+
 
 /* Rotating Circle 
 .section__pic-container {

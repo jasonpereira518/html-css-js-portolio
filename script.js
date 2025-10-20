@@ -239,7 +239,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 console.log("%c👋 Hey there! Curious dev? Let's connect on LinkedIn!!", 
-  "color:#00aaff; font-size:16px; font-weight:bold;"
+  "color:#00aaff; font-size:14px; font-weight:bold;"
 );
 console.log("%c🔗 https://www.linkedin.com/in/jasonpereira518/", 
   "color:#0077b5; font-size:14px; text-decoration:underline;"
