@@ -215,13 +215,31 @@ document.addEventListener('DOMContentLoaded', () => {
   applyFilters();
 });
 
+
+
+const cursor = document.querySelector(".custom-cursor");
+
+let mouseX = -10, mouseY = -10;
+let cursorX = 0, cursorY = 0;
+
 document.addEventListener("mousemove", (e) => {
-  const cursor = document.querySelector(".custom-cursor");
-  if (cursor) {
-    cursor.style.top = `${e.clientY}px`;
-    cursor.style.left = `${e.clientX}px`;
-  }
+  mouseX = e.clientX;
+  mouseY = e.clientY;
 });
+
+function animateCursor() {
+  cursorX += (mouseX - cursorX) * 0.4;
+  cursorY += (mouseY - cursorY) * 0.4;
+  cursor.style.top = `${cursorY}px`;
+  cursor.style.left = `${cursorX}px`;
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+document.addEventListener("mousedown", () => cursor.classList.add("click"));
+document.addEventListener("mouseup",   () => cursor.classList.remove("click"));
+
+
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -385,3 +403,4 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 */
+

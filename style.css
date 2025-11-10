@@ -11,6 +11,10 @@ body {
     font-family: "Poppins", sans-serif;
 }
 
+body,a,button {
+    cursor: none !important;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -881,12 +885,37 @@ footer p {
     }
 }*/
 
-/*
-body {
-  cursor: none;
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #4B9CD3;
+  border-radius: 50%;
+  background-color: rgba(75, 156, 211, 0.15);
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 0.15s ease, background-color 0.15s ease, border 0.15s ease;
+  z-index: 10000;
+  mix-blend-mode: difference;
 }
 
 
+a:hover ~ .custom-cursor,
+button:hover ~ .custom-cursor,
+.icon:hover ~ .custom-cursor {
+  transform: translate(-50%, -50%) scale(1.6);
+  background-color: rgba(75, 156, 211, 0.3);
+}
+
+/* Click = shrink */
+.custom-cursor.click {
+  transform: translate(-50%, -50%) scale(0.7);
+}
+
+/*
 .custom-cursor {
   position: fixed;
   top: 0;
@@ -910,8 +939,8 @@ button:hover ~ .custom-cursor,
   background: #4B9CD3;
   transform: translate(-50%, -50%) scale(1.5);
 
-}
-*/
+}*/
+
 
 /* Contact form layout
 .contact-form {
