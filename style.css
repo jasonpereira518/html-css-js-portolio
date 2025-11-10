@@ -11,7 +11,7 @@ body {
     font-family: "Poppins", sans-serif;
 }
 
-body,a,button {
+body,a,button, .icon {
     cursor: none !important;
 }
 
@@ -54,6 +54,10 @@ nav {
   text-decoration: none;
   color: black;
   padding-bottom: 6px;
+}
+
+.nav-links a:hover {
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .nav-links a::after {
@@ -842,7 +846,12 @@ footer p {
   .skill-fill { transition: none; }
 }
 
-
+a[target="_blank"]:hover {
+  color: #13294B;
+  text-decoration: underline;
+  text-decoration-color: #00FFAA; 
+  text-underline-offset: 0.4rem;
+}
 
 
 /* Rotating Circle 

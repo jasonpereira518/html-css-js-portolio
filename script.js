@@ -239,6 +239,12 @@ animateCursor();
 document.addEventListener("mousedown", () => cursor.classList.add("click"));
 document.addEventListener("mouseup",   () => cursor.classList.remove("click"));
 
+document.addEventListener("mouseleave", () => {
+  cursor.style.opacity = 0; // hide when cursor leaves window
+});
+document.addEventListener("mouseenter", () => {
+  cursor.style.opacity = 1; // show again when it re-enters
+});
 
 
 
