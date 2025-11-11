@@ -661,6 +661,69 @@ footer p {
   margin-right: 0.35rem;
 }
 
+.project-ribbon {
+  position: absolute;
+  top: 0.75rem;
+  left: -0.6rem;
+  background: linear-gradient(135deg, #FFCF33, #FF9F1C);
+  color: #222;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  padding: 0.4rem 1.2rem;
+  border-radius: 0 0.4rem 0.4rem 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+  overflow: hidden;
+}
+
+/* ⚡ Reflection animation */
+.project-ribbon::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  transform: skewX(-25deg);
+  animation: shine 4s ease-in-out infinite;
+}
+
+/* ✨ Keyframes for shimmer */
+@keyframes shine {
+  0% {
+    left: -75%;
+  }
+  50% {
+    left: 125%;
+  }
+  100% {
+    left: 125%;
+  }
+}
+
+/* Optional: subtle gradient movement for realism */
+@keyframes subtleGlow {
+  0% {
+    background: linear-gradient(135deg, #FFCF33, #FF9F1C);
+  }
+  50% {
+    background: linear-gradient(135deg, #FFCF33, #FF9F1C);
+  }
+  100% {
+    background: linear-gradient(135deg, #FFCF33, #FF9F1C);
+  }
+}
+
+.project-ribbon {
+  animation: subtleGlow 6s ease-in-out infinite alternate;
+}
+
 
 /* Optional: grid feel when many cards */
 .experience-details-container .about-containers {

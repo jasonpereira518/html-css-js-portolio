@@ -7,6 +7,7 @@
   <link rel="icon" type="image/x-icon" href="../assets/airpodsmax.png">
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="../mediaqueries.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
   <div class="custom-cursor"></div>
@@ -74,10 +75,10 @@
     </section>-->
     <!-- Image Gallery -->
     <section>
-      <p class="section__text__p1">Snapshots</p>
+      <p class="section__text__p1" data-aos="zoom-in">Snapshots</p>
       <h2 class="title">Gallery</h2>
 
-      <div class="gallery-grid">
+      <div class="gallery-grid"  data-aos="zoom-in-up">
         <div class="gallery-item">
           <img src="../assets/jabout-pic.JPEG" alt="Gallery item 1">
         </div>
@@ -110,7 +111,7 @@
   </section>
 
   <footer id="footer" style="margin-top: 12rem;">
-    <p>Press <strong>"J"</strong> on the main site to leave or return to Jason Mode any time.</p>
+    <p>Press <span style="color: #4B9CD3"><strong>"J"</strong></span> on the main site to leave or return to Jason Mode any time.</p>
     <p>Copyright &#169; 2025 Jason Pereira. All Rights Reserved</p>
   </footer>
 
@@ -339,6 +340,13 @@
       });
     });
   </script>
-
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 100
+    });
+  </script>
 </body>
 </html>
