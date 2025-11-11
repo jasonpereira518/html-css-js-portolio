@@ -416,6 +416,30 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const jasonNote = document.querySelector(".jason-mode-note");
+  if (!jasonNote) return; // safety
+
+  function checkBottom() {
+    const doc = document.documentElement;
+    const scrollTop = window.pageYOffset || doc.scrollTop || 0;
+    const viewportHeight = window.innerHeight || doc.clientHeight;
+    const fullHeight = doc.scrollHeight || document.body.scrollHeight;
+
+    // How close to the bottom before we show it
+    const threshold = 120; // px from bottom
+
+    if (scrollTop + viewportHeight >= fullHeight - threshold) {
+      jasonNote.classList.add("visible");
+    } else {
+      jasonNote.classList.remove("visible");
+    }
+  }
+
+  // Run on scroll and on load
+  window.addEventListener("scroll", checkBottom, { passive: true });
+  checkBottom();
+});
 
 
 /*

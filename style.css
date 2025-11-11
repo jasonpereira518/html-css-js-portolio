@@ -11,7 +11,7 @@ body {
     font-family: "Poppins", sans-serif;
 }
 
-body,a,button,.icon,.logo {
+body,a,button,.icon,.logo, .gallery-item img {
     cursor: none !important;
 }
 
@@ -632,6 +632,36 @@ footer p {
   pointer-events: none;
 }
 
+/* Winner ribbon for Case Closed */
+.project-card {
+  position: relative; /* allows absolute-positioned ribbon */
+}
+
+.project-card--winner .project-ribbon {
+  position: absolute;
+  top: 16px;
+  left: 18px;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #FFCF33, #FF9F1C);
+  color: #3b2a00;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  pointer-events: none; /* don't block clicks on buttons below */
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Optional: tiny trophy emoji on the left */
+.project-card--winner .project-ribbon::before {
+  content: "🏆";
+  margin-right: 0.35rem;
+}
+
+
 /* Optional: grid feel when many cards */
 .experience-details-container .about-containers {
   flex-wrap: wrap;
@@ -1006,6 +1036,92 @@ button:hover ~ .custom-cursor,
   }
 }
 
+.jason-mode-note {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  font-size: 0.85rem;
+  color: rgba(0, 0, 0, 0.7);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 0.4rem 0.7rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  font-family: 'Poppins', sans-serif;
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.jason-mode-note .key-hint {
+  font-weight: 600;
+  color: #4B9CD3;
+}
+
+.jason-mode-note.visible {
+  opacity: 0.95;
+  transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+  .jason-mode-note {
+    font-size: 0.75rem;
+    right: 0.8rem;
+    bottom: 0.8rem;
+  }
+}
+
+/* ==== Jason Mode Image Popout ==== */
+
+.img-popout-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9500;                 /* below custom cursor (10000), above everything else */
+  pointer-events: none;          /* only clickable when visible */
+}
+
+.img-popout-overlay.visible {
+  pointer-events: auto;
+}
+
+.img-popout-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.img-popout-overlay.open .img-popout-backdrop {
+  opacity: 1;
+}
+
+.img-popout-img {
+  position: fixed;
+  /* top / left / width / height set by JS */
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+
+  /* 🔥 animation */
+  opacity: 0;
+  transform: scale(0.85);
+  transform-origin: center center;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    top 0.25s ease,
+    left 0.25s ease,
+    width 0.25s ease,
+    height 0.25s ease;
+}
+
+.img-popout-overlay.open .img-popout-img {
+  opacity: 1;
+  transform: scale(1);
+}
 
 
 /* ===== Resume Modal ===== */
@@ -1179,34 +1295,7 @@ body.modal-open {
   overflow: hidden;
 }
 
-
-/*
-.custom-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 14px;
-  height: 14px;
-  background-color: #13294B; 
-  border-radius: 50%;
-  pointer-events: none; /
-  transform: translate(-50%, -50%);
-  mix-blend-mode: difference;
-  z-index: 9999;
-  transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
-}
-
-a:hover ~ .custom-cursor,
-button:hover ~ .custom-cursor,
-.icon:hover ~ .custom-cursor {
-  width: 40px;
-  height: 40px;
-  background: #4B9CD3;
-  transform: translate(-50%, -50%) scale(1.5);
-
-}*/
-
-
+/* ===== Contact Form ===== */
 /* Contact form layout
 .contact-form {
   display: grid;

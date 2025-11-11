@@ -110,7 +110,7 @@
   </section>
 
   <footer id="footer" style="margin-top: 12rem;">
-    <p>Press <strong>J</strong> on the main site to return to Jason Mode any time.</p>
+    <p>Press <strong>"J"</strong> on the main site to leave or return to Jason Mode any time.</p>
     <p>Copyright &#169; 2025 Jason Pereira. All Rights Reserved</p>
   </footer>
 
@@ -198,5 +198,147 @@
     }
   });
   </script>
+
+  <script>
+    // Image popout for Jason Mode gallery
+    document.addEventListener("DOMContentLoaded", () => {
+      const galleryImages = document.querySelectorAll(".gallery-grid img");
+      if (!galleryImages.length) return;
+
+      let overlay = null;
+      let overlayImg = null;
+
+      function createOverlay() {
+        overlay = document.createElement("div");
+        overlay.className = "img-popout-overlay";
+        overlay.innerHTML = `
+          <div class="img-popout-backdrop"></div>
+          <img class="img-popout-img" alt="">
+        `;
+        document.body.appendChild(overlay);
+        overlayImg = overlay.querySelector(".img-popout-img");
+
+        // Close when clicking "outside" (backdrop) or overlay background
+        overlay.addEventListener("click", (e) => {
+          if (
+            e.target === overlay ||
+            e.target.classList.contains("img-popout-backdrop")
+          ) {
+            closeOverlay();
+          }
+        });
+
+        overlayImg.addEventListener("click", (e) => {
+          e.stopPropagation();      // don't let it bubble to overlay
+          closeOverlay();
+        });
+
+        // Close on Escape
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && overlay.classList.contains("open")) {
+            closeOverlay();
+          }
+        });
+      }
+
+      function closeOverlay() {
+        if (!overlay) return;
+        overlay.classList.remove("open");
+        document.body.classList.remove("modal-open");
+        // Wait for animation to finish before disabling pointer-events
+        setTimeout(() => {
+          if (overlay) overlay.classList.remove("visible");
+        }, 250);
+      }
+
+      function openOverlayFromImage(img) {
+          if (!overlay) createOverlay();
+
+          const rect = img.getBoundingClientRect();
+
+          // Start exactly where the thumbnail is
+          overlayImg.src = img.src;
+          overlayImg.alt = img.alt || "";
+
+          overlayImg.style.top = rect.top + "px";
+          overlayImg.style.left = rect.left + "px";
+          overlayImg.style.width = rect.width + "px";
+          overlayImg.style.height = rect.height + "px";
+          overlayImg.style.transform = "scale(0.85)";  // starting scale
+
+          overlay.classList.add("visible");
+          document.body.classList.add("modal-open");
+
+          const viewportW = window.innerWidth;
+          const viewportH = window.innerHeight;
+          const margin = 40;
+          const maxW = viewportW - margin * 2;
+          const maxH = viewportH - margin * 2;
+
+          const aspect = rect.width / rect.height || 1;
+          let targetW = maxW;
+          let targetH = targetW / aspect;
+
+          if (targetH > maxH) {
+            targetH = maxH;
+            targetW = targetH * aspect;
+          }
+
+          const targetLeft = (viewportW - targetW) / 2;
+          const targetTop = (viewportH - targetH) / 2;
+
+          // 🔧 Force reflow so the browser registers the starting rect
+          void overlayImg.offsetWidth;
+
+          // Now animate to center + zoom
+          requestAnimationFrame(() => {
+            overlay.classList.add("open");
+            overlayImg.style.top = targetTop + "px";
+            overlayImg.style.left = targetLeft + "px";
+            overlayImg.style.width = targetW + "px";
+            overlayImg.style.height = targetH + "px";
+            overlayImg.style.transform = "scale(1)";
+          });
+        }
+
+
+      galleryImages.forEach((img) => {
+        img.style.cursor = "pointer";
+        img.addEventListener("click", () => openOverlayFromImage(img));
+      });
+
+      // Optional: keep popout fitting viewport if user resizes while open
+      window.addEventListener("resize", () => {
+        if (!overlay || !overlay.classList.contains("open") || !overlayImg || !overlayImg.src) return;
+
+        const viewportW = window.innerWidth;
+        const viewportH = window.innerHeight;
+        const margin = 40;
+        const maxW = viewportW - margin * 2;
+        const maxH = viewportH - margin * 2;
+
+        const currentAspect = overlayImg.naturalWidth && overlayImg.naturalHeight
+          ? overlayImg.naturalWidth / overlayImg.naturalHeight
+          : overlayImg.getBoundingClientRect().width / overlayImg.getBoundingClientRect().height || 1;
+
+        let targetW = maxW;
+        let targetH = targetW / currentAspect;
+
+        if (targetH > maxH) {
+          targetH = maxH;
+          targetW = targetH * currentAspect;
+        }
+
+        const targetLeft = (viewportW - targetW) / 2;
+        const targetTop = (viewportH - targetH) / 2;
+
+        overlayImg.style.top = targetTop + "px";
+        overlayImg.style.left = targetLeft + "px";
+        overlayImg.style.width = targetW + "px";
+        overlayImg.style.height = targetH + "px";
+      });
+    });
+  </script>
+
 </body>
 </html>
