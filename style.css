@@ -1008,6 +1008,178 @@ button:hover ~ .custom-cursor,
 
 
 
+/* ===== Resume Modal ===== */
+
+.resume-modal {
+  position: fixed;
+  inset: 0;
+  display: none;                /* hidden by default */
+  align-items: center;
+  justify-content: center;
+  z-index: 9000;                /* above nav, below custom-cursor (10000) */
+  pointer-events: none;         /* enabled only when open */
+}
+
+.resume-modal.open {
+  display: flex;
+  pointer-events: auto;
+}
+
+/* Dim the background, but with lighter blur */
+.resume-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.40);   /* a bit lighter */
+  backdrop-filter: blur(1.5px);      /* less blurry than 4px */
+}
+
+/* Larger dialog */
+.resume-dialog {
+  position: relative;
+  max-width: 900px;            /* slightly narrower for portrait shape */
+  width: 82%;
+  max-height: 95vh;            /* taller overall */
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.45);
+  padding: 1rem 1.2rem 1.2rem;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+
+/* Header row with title left, actions right */
+.resume-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.4rem;
+}
+
+.resume-dialog h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #13294B;
+}
+
+.resume-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ===== Resume "Open" Button ===== */
+.resume-open-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: rgb(0, 0, 0);
+  background: none;
+  border: 1.5px solid rgb(0, 0, 0);
+  border-radius: 20px;
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.resume-open-btn:hover {
+  background: rgb(53, 53, 53);
+  color: white;
+  transform: translate(0,-2px);
+}
+
+.resume-open-btn svg {
+  stroke: currentColor;
+  transition: transform 0.2s ease;
+}
+
+
+/* Close “X” still in top-right corner */
+.resume-close {
+  border: none;
+  background: transparent;
+  font-size: 1.7rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+}
+
+
+.resume-frame-wrapper {
+  flex: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.12);
+  height: 100%;
+  display: flex;
+}
+
+.resume-frame-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: none;
+  min-height: 65vh;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+}
+
+
+/* Mobile tweaks */
+@media (max-width: 768px) {
+  .resume-dialog {
+    width: 98%;
+    max-height: 95vh;
+    padding: 0.9rem;
+  }
+
+  .resume-dialog h2 {
+    font-size: 1.05rem;
+  }
+
+  #resume-download {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Add padding around the popup on narrower screens */
+@media (max-width: 1100px) {
+  .resume-modal {
+    padding: 2rem; /* space around the popup */
+  }
+}
+
+@media (max-width: 768px) {
+  .resume-modal {
+    padding: 1.25rem; /* slightly smaller padding for mobile */
+  }
+
+  .resume-dialog {
+    width: 100%;          /* use full width of padded container */
+    max-width: none;      /* allow flexible scaling */
+    border-radius: 14px;  /* softer corners on small screens */
+  }
+}
+
+.resume-frame-wrapper:hover ~ .custom-cursor,
+.resume-frame-wrapper iframe:hover ~ .custom-cursor {
+  opacity: 0 !important;
+}
+
+/* Prevent scrolling behind modal when open */
+body.modal-open {
+  overflow: hidden;
+}
+
+
 /*
 .custom-cursor {
   position: fixed;

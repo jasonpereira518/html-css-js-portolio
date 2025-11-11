@@ -74,12 +74,40 @@ function toggleMenu() {
     btn.parentNode.replaceChild(freshBtn, btn);
 
     const href = freshBtn.getAttribute('data-href');
+
     freshBtn.addEventListener('click', function () {
-      if (href) {
+      if (!href) return;
+
+      const modal   = document.getElementById('resume-modal');
+      const frame   = document.getElementById('resume-frame');
+      const dlBtn   = document.getElementById('resume-download');
+
+      if (!modal || !frame) {
+        // Fallback: open in new tab if modal isn't present
         window.open(href, '_blank', 'noopener');
+        return;
       }
+
+      // Set/refresh PDF source
+      if (frame.src !== href) {
+        frame.src = href;
+      }
+
+      // Wire the Download button (always points at href)
+      if (dlBtn) {
+        dlBtn.onclick = () => {
+          window.open(href, "_blank", "noopener");
+        };
+      }
+
+      // Open modal + lock body scroll
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
     });
   }
+
+
 
   onReady(function () {
     const btn = document.getElementById('resume-btn');
@@ -114,6 +142,52 @@ function toggleMenu() {
     }
   });
 })();
+
+document.addEventListener("DOMContentLoaded", () => {
+  const modal    = document.getElementById("resume-modal");
+  const closeBtn = modal ? modal.querySelector(".resume-close") : null;
+  const backdrop = modal ? modal.querySelector(".resume-backdrop") : null;
+
+  function closeResumeModal() {
+    if (!modal) return;
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");  // re-enable scrolling
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", closeResumeModal);
+  }
+
+  if (backdrop) {
+    backdrop.addEventListener("click", closeResumeModal);
+  }
+
+  // Close on Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal && modal.classList.contains("open")) {
+      closeResumeModal();
+    }
+  });
+});
+
+
+// ===== Hide custom cursor when over PDF iframe =====
+document.addEventListener("DOMContentLoaded", () => {
+  const pdfFrame = document.getElementById("resume-frame");
+  const cursor = document.querySelector(".custom-cursor");
+
+  if (pdfFrame && cursor) {
+    pdfFrame.addEventListener("mouseenter", () => {
+      cursor.style.opacity = "0";
+    });
+    pdfFrame.addEventListener("mouseleave", () => {
+      cursor.style.opacity = "1";
+    });
+  }
+});
+
+
 
 // Header Typewriter Effect
 document.addEventListener("DOMContentLoaded", function () {

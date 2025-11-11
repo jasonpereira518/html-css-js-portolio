@@ -376,9 +376,9 @@
             <li>Buckley Public Service Scholar</li>
             <li>CS + Social Good · App Team Carolina</li>
             <li>FBLA-C · TEDxUNC · UNC NPS</li>
-            <li>Duke AI Hackathon - Enterprise Tools Track 
+            <li>Duke AI Hackathon - 
                 <a href="https://devpost.com/software/case-closed-hjr24p" target="_blank" rel="noopener noreferrer" style="color:#2f82ba;">
-            Winner
+            Enterprise Tools Track Winner
           </a></li>
             </ul>
         </div>
@@ -394,7 +394,7 @@
             <p class="edu-years">2023 — 2025</p>
             <ul class="edu-highlights">
             <li>4.0 GPA · Named to 
-                <a href="https://www.cpcc.edu/academics/presidents-list" target="_blank" rel="noopener noreferrer" style="color:#AA985D;">
+                <a href="https://www.cpcc.edu/academics/presidents-list#:~:text=NC-,Jason,NC" target="_blank" rel="noopener noreferrer" style="color:#AA985D;">
                     President's List</a></li>
             <li>CSC249 Data Structure & Algorithms, MAT273 Calculus III, MAT280 Linear Algebra</li>
             </ul>
@@ -455,6 +455,33 @@
             <p id="cf-status" class="cf-status" role="status" aria-live="polite"></p>
         </form> -->
     </section>
+    <!-- Resume Modal -->
+    <div id="resume-modal" class="resume-modal" aria-hidden="true">
+      <div class="resume-backdrop" data-close="resume-modal"></div>
+
+      <div class="resume-dialog" role="dialog" aria-modal="true" aria-labelledby="resume-modal-title">
+        <div class="resume-header">
+          <h2 id="resume-modal-title" style="color: rgb(0, 0, 0);">Resume - Jason Pereira</h2>
+          <div class="resume-header-actions">
+            <button id="resume-download" class="resume-open-btn" type="button" title="Open PDF in new tab">
+            <span>Open</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+            </button>
+
+            <button class="resume-close" type="button" aria-label="Close resume viewer">&times;</button>
+          </div>
+        </div>
+
+        <div class="resume-frame-wrapper">
+          <!-- src is set dynamically in JS from data-href on the button -->
+          <iframe id="resume-frame" src="" title="PDF resume preview" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
     <footer id="footer">
         <nav>
             <div class="nav-links-container">
