@@ -119,9 +119,9 @@ function toggleMenu() {
 document.addEventListener("DOMContentLoaded", function () {
   const target = document.getElementById("typewriter");
   const phrases = [
-    "Software Engineer",
-    "Data Scientist",
-    "Full-Stack Developer",
+    "Software Developer",
+    "Data Analyst",
+    "AI/ML Engineer",
     "Life-Long Learner"
   ];
 
@@ -327,6 +327,20 @@ document.addEventListener("DOMContentLoaded", () => {
   updateBar();
 })();
 
+
+// ===== Jason Mode Keyboard Shortcut (press "J") =====
+document.addEventListener("keydown", (e) => {
+  // Ignore if typing in an input or textarea
+  const active = document.activeElement;
+  if (active && (active.tagName === "INPUT" || active.tagName === "TEXTAREA")) {
+    return;
+  }
+
+  if (e.key === "j" || e.key === "J") {
+    // Optional: small delay or animation hook could go here
+    window.location.href = "extras/jason-mode.html";
+  }
+});
 
 
 

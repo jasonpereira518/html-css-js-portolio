@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jason Mode</title>
+  <link rel="icon" type="image/x-icon" href="../assets/airpodsmax.png">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../mediaqueries.css">
+</head>
+<body>
+  <div class="custom-cursor"></div>
+
+  <nav id="desktop-nav">
+    <div class="logo">Jason Pereira</div>
+    <div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Back to Portfolio</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section id="jason-mode" style="margin-top: 6rem;">
+    <p class="section__text__p1">Just for Fun</p>
+    <h1 class="title">Jason Mode 🎧🎾</h1>
+
+    <!-- Hobbies -->
+    <div class="experience-details-container">
+      <div class="about-containers">
+        <div class="details-container">
+          <h2 class="experience-sub-title">Hobbies</h2>
+          <ul class="jason-list">
+            <li>🎾 Playing tennis and pickup sports</li>
+            <li>💻 Experimenting with side projects & hackathons</li>
+            <li>🎵 Discovering new music & building playlists</li>
+            <li>🌲 Hiking and exploring new trails</li>
+          </ul>
+        </div>
+
+        <!-- Playlists -->
+        <div class="details-container">
+          <h2 class="experience-sub-title">Playlists</h2>
+          <ul class="jason-list">
+            <li>💡 <strong>Focus Mode:</strong> Lo-fi / cinematic tracks for deep work</li>
+            <li>🚗 <strong>Drive Vibes:</strong> Upbeat pop & EDM for long drives</li>
+            <li>🎄 <strong>Holiday Jam:</strong> Christmas + chill seasonal stuff</li>
+          </ul>
+          <!-- Optional: embed actual playlists later -->
+          <!-- Example (replace with your own):
+          <iframe style="border-radius:12px" src="YOUR_SPOTIFY_EMBED_URL" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+          -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Favorite Quotes -->
+    <section style="margin-top: 4rem;">
+      <p class="section__text__p1">A Few Lines I Like</p>
+      <h2 class="title" style="font-size: 1.6rem;">Favorite Quotes</h2>
+
+      <div class="quotes-container">
+        <div class="quote-card">
+          <p class="quote-text">“Success is the sum of small efforts, repeated day in and day out.”</p>
+          <p class="quote-author">– Robert Collier</p>
+        </div>
+        <div class="quote-card">
+          <p class="quote-text">“In the middle of difficulty lies opportunity.”</p>
+          <p class="quote-author">– Albert Einstein</p>
+        </div>
+        <div class="quote-card">
+          <p class="quote-text">“Service is the rent we pay for the privilege of living on this earth.”</p>
+          <p class="quote-author">– Shirley Chisholm</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Image Gallery -->
+    <section style="margin-top: -10rem;">
+      <p class="section__text__p1">Snapshots</p>
+      <h2 class="title" style="font-size: 1.6rem;">Gallery</h2>
+
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="../assets/jabout-pic.JPEG" alt="Gallery item 1">
+        </div>
+        <div class="gallery-item">
+          <img src="../assets/marines_award.JPEG" alt="Gallery item 2">
+        </div>
+        <div class="gallery-item">
+          <img src="../assets/NCCTM_pres.JPEG" alt="Gallery item 3">
+        </div>
+        <div class="gallery-item">
+          <img src="../assets/aws.jpg" alt="Gallery item 4">
+        </div>
+        <div class="gallery-item">
+          <img src="../assets/websitedesignnationals.jpg" alt="Gallery item 5">
+        </div>
+        <div class="gallery-item">
+          <img src="../assets/MOPbenches.jpg" alt="Gallery item 6">
+        </div>
+        <div class="gallery-item">
+          <img src="../assets/EagleCelebration.jpg" alt="Gallery item 7">
+        </div>
+        <div class="gallery-item">
+          <img src="../assets/tarheelorientation.jpg" alt="Gallery item 8">
+        </div>
+        <div class="gallery-item">
+          <img src="../assets/eaglescouts.png" alt="Gallery item 9">
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <footer id="footer" style="margin-top: 12rem;">
+    <p>Press <strong>J</strong> on the main site to return to Jason Mode any time.</p>
+    <p>Copyright &#169; 2025 Jason Pereira. All Rights Reserved</p>
+  </footer>
+
+
+  <style>
+    /* Enable custom cursor only on Jason Mode */
+    body {
+      cursor: none !important; /* hide native cursor */
+    }
+
+    .custom-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 16px;
+      height: 16px;
+      border: 2px solid #4B9CD3;
+      border-radius: 50%;
+      background-color: rgba(75, 156, 211, 0.15);
+      pointer-events: none;
+      transform: translate(-50%, -50%) scale(1);
+      transition: transform 0.15s ease, background-color 0.15s ease, border 0.15s ease;
+      z-index: 10000;
+    }
+
+    .custom-cursor.hover {
+      transform: translate(-50%, -50%) scale(1.6);
+      background-color: rgba(83, 101, 129, 0.4);
+      border: 2px solid #13294B;
+    }
+
+    .custom-cursor.click {
+      transform: translate(-50%, -50%) scale(0.7);
+    }
+
+    #desktop-nav .logo {
+      margin-left: -4rem;
+      text-align: left;
+      justify-self: flex-start;
+    }
+  </style>
+
+  <script>
+    const cursor = document.querySelector(".custom-cursor");
+    let mouseX = -10, mouseY = -10, cursorX = -10, cursorY = -10;
+
+    document.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animateCursor() {
+      cursorX += (mouseX - cursorX) * 0.3;
+      cursorY += (mouseY - cursorY) * 0.3;
+      cursor.style.top = `${cursorY}px`;
+      cursor.style.left = `${cursorX}px`;
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    document.addEventListener("mousedown", () => cursor.classList.add("click"));
+    document.addEventListener("mouseup", () => cursor.classList.remove("click"));
+
+    document.addEventListener("mouseleave", () => {
+      cursor.style.opacity = 0; // hide when cursor leaves window
+    });
+    document.addEventListener("mouseenter", () => {
+      cursor.style.opacity = 1; // show again when it re-enters
+    });
+
+    document.addEventListener("keydown", (e) => {
+    // Ignore if typing in an input or textarea
+    const active = document.activeElement;
+    if (active && (active.tagName === "INPUT" || active.tagName === "TEXTAREA")) {
+      return;
+    }
+
+    if (e.key === "j" || e.key === "J") {
+      // Optional: small delay or animation hook could go here
+      window.location.href = "../index.html";
+    }
+  });
+  </script>
+</body>
+</html>
