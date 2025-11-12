@@ -343,31 +343,28 @@ console.log("%c🔗 https://www.linkedin.com/in/jasonpereira518/",
   "color:#0077b5; font-size:14px; text-decoration:underline;"
 );
 
-// ===== Scroll Highlighting using IntersectionObserver =====
-document.addEventListener("DOMContentLoaded", () => {
-  const sections = document.querySelectorAll("section[id]");
-  const navLinks = document.querySelectorAll(".nav-links a");
+// Highlight nav link as user scrolls
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('#desktop-nav .nav-links a');
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        const id = entry.target.getAttribute("id");
-        const link = document.querySelector(`.nav-links a[href="#${id}"]`);
+function activateLink() {
+  let scrollY = window.scrollY + window.innerHeight / 3;
 
-        if (entry.isIntersecting) {
-          navLinks.forEach((el) => el.classList.remove("active"));
-          link.classList.add("active");
-        }
-      });
-    },
-    {
-      threshold: 0.4, // 40% of section visible = active
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.offsetHeight;
+    const sectionId = section.getAttribute('id');
+
+    if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+      navLinks.forEach(link => link.classList.remove('active'));
+      document
+        .querySelector(`#desktop-nav a[href="#${sectionId}"]`)
+        ?.classList.add('active');
     }
-  );
+  });
+}
 
-  sections.forEach((section) => observer.observe(section));
-});
-
+window.addEventListener('scroll', activateLink);
 
 
 // Scroll progress bar
