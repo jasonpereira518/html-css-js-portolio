@@ -435,6 +435,10 @@ section {
     margin: auto 0;
 }
 
+#leadership,
+#education {
+  position: relative;
+}
 
 
 /* EXPERIENCE SECTION */
