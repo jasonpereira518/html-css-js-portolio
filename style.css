@@ -504,10 +504,71 @@ article.icon {
     color: black;
 }
 
+/* Project title marquee */
+.project-title {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;   /* keep it on one line */
+  text-align: center;
+}
+
+/* Container controls overflow */
+.project-title {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Track that scrolls */
+.marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marquee-scroll 12s linear infinite;
+}
+
+.marquee-text {
+  padding-right: 4.5rem;
+}
+
+/* Hover to pause */
+.project-title:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Scroll keyframes: seamless because track is 2× width */
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+
+
 .project-btn {
     color: black;
     border-color: rgb(163, 163, 163);
 }
+
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* max 3 per row */
+  gap: 1.5rem 1.5rem;                               /* vertical / horizontal spacing */
+  max-width: 1200px;
+  margin: 0 auto 3rem;                              /* center the whole grid */
+}
+
+/* Responsive: 2 columns on medium screens, 1 on small */
+@media (max-width: 1000px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 
 /* CONTACT */
 
@@ -628,15 +689,15 @@ footer p {
 }
 
 /* Hide filtered cards smoothly */
+/* Card base (keep hover/other effects separate if you like) */
 .project-card {
-  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+  position: relative;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
+/* When filtered out: remove from layout so others move up/left */
 .project-card.is-hidden {
-  opacity: 0;
-  transform: scale(.98);
-  visibility: hidden;
-  pointer-events: none;
+  display: none;
 }
 
 /* Winner ribbon for Case Closed */

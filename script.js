@@ -238,55 +238,107 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener('DOMContentLoaded', () => {
   const buttons = Array.from(document.querySelectorAll('.filter-btn'));
   const cards   = Array.from(document.querySelectorAll('.project-card'));
+  if (!buttons.length || !cards.length) return;
+
   const activeFilters = new Set();
+  const allBtn = buttons.find(b => (b.dataset.filter || '').toLowerCase() === 'all');
 
   function applyFilters() {
-    // If no filters selected, show all
     if (activeFilters.size === 0) {
+      // No filters => show everything
       cards.forEach(card => card.classList.remove('is-hidden'));
-      return;
+    } else {
+      const selected = [...activeFilters];
+
+      cards.forEach(card => {
+        const tags = (card.getAttribute('data-cat') || '')
+          .toLowerCase()
+          .split(/\s+/)
+          .filter(Boolean);
+
+        const show = selected.some(tag => tags.includes(tag));
+        card.classList.toggle('is-hidden', !show);
+      });
     }
 
-    cards.forEach(card => {
-      const tags = (card.getAttribute('data-cat') || '')
-        .toLowerCase()
-        .split(/\s+/);
-      // show if card has ANY selected tag
-      const show = [...activeFilters].some(tag => tags.includes(tag));
-      card.classList.toggle('is-hidden', !show);
-    });
+    // 🔥 Recalculate scroll progress after layout changes
+    if (typeof window.updateScrollProgress === 'function') {
+      // Let layout settle first
+      requestAnimationFrame(() => {
+        window.updateScrollProgress();
+      });
+    }
+  }
+
+  function resetToAll() {
+    activeFilters.clear();
+    buttons.forEach(b => b.classList.remove('active'));
+    if (allBtn) allBtn.classList.add('active');
+    applyFilters();
   }
 
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
-      const cat = (btn.getAttribute('data-filter') || '').toLowerCase();
+      const cat = (btn.dataset.filter || '').toLowerCase();
 
       if (cat === 'all') {
-        // Reset everything if "All" clicked
-        activeFilters.clear();
-        buttons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        applyFilters();
+        resetToAll();
         return;
       }
 
-      // Toggle button state
-      btn.classList.toggle('active');
-      const isActive = btn.classList.contains('active');
+      // Toggle this filter
+      const isActivating = !btn.classList.contains('active');
+      btn.classList.toggle('active', isActivating);
 
-      // Manage "All" button state
-      const allBtn = buttons.find(b => b.dataset.filter === 'all');
-      if (isActive) activeFilters.add(cat);
-      else activeFilters.delete(cat);
+      if (isActivating) {
+        activeFilters.add(cat);
+      } else {
+        activeFilters.delete(cat);
+      }
+
+      // If no filters left, fall back to "All"
+      if (activeFilters.size === 0) {
+        resetToAll();
+        return;
+      }
+
+      // Make sure "All" is off if any specific filters are on
       if (allBtn) allBtn.classList.remove('active');
 
-      // Apply filters
       applyFilters();
     });
   });
 
-  // Start with "All" active
-  applyFilters();
+  // Start with "All" selected and everything visible
+  resetToAll();
+});
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const marqueeTitles = document.querySelectorAll(".marquee-title");
+
+  marqueeTitles.forEach(span => {
+    const fullText = span.textContent.trim();
+
+    // Create wrapper (track)
+    const track = document.createElement("span");
+    track.className = "marquee-track";
+
+    // Two copies for seamless loop
+    const t1 = document.createElement("span");
+    t1.className = "marquee-text";
+    t1.textContent = fullText;
+
+    const t2 = t1.cloneNode(true);
+
+    track.appendChild(t1);
+    track.appendChild(t2);
+
+    // Replace original span with the animated version
+    span.replaceWith(track);
+  });
 });
 
 
@@ -368,35 +420,27 @@ window.addEventListener('scroll', activateLink);
 
 
 // Scroll progress bar
-(function () {
-  const bar = document.getElementById('scroll-progress');
-  if (!bar) return;
+// ===== Scroll Progress Bar =====
+document.addEventListener('DOMContentLoaded', () => {
+  const progressEl = document.getElementById('scroll-progress');
+  if (!progressEl) return; // safety guard
 
-  let ticking = false;
-
-  function updateBar() {
+  function updateScrollProgress() {
     const doc = document.documentElement;
-    const scrollTop = window.pageYOffset || doc.scrollTop || 0;
-    const max = (doc.scrollHeight - doc.clientHeight) || 1; // avoid divide-by-zero
-    const pct = Math.min(100, Math.max(0, (scrollTop / max) * 100));
-    bar.style.width = pct + '%';
-    ticking = false;
+    const scrollTop = window.scrollY || doc.scrollTop;
+    const docHeight = doc.scrollHeight - window.innerHeight;
+
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressEl.style.width = `${progress}%`;
   }
 
-  function requestTick() {
-    if (!ticking) {
-      ticking = true;
-      requestAnimationFrame(updateBar);
-    }
-  }
+  // Expose globally so other scripts (like filters) can call it
+  window.updateScrollProgress = updateScrollProgress;
 
-  window.addEventListener('scroll', requestTick, { passive: true });
-  window.addEventListener('resize', requestTick);
-  window.addEventListener('load', requestTick);
+  window.addEventListener('scroll', updateScrollProgress);
+  updateScrollProgress(); // initial
+});
 
-  // Initial paint
-  updateBar();
-})();
 
 
 // ===== Jason Mode Keyboard Shortcut (press "J") =====
