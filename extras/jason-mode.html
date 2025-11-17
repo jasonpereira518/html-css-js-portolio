@@ -108,6 +108,43 @@
         </div>
       </div>
     </section>
+    <section id="projects">
+        <p class="section__text__p1">Browse My Downtime</p>
+        <h1 class="title">Fun Projects</h1>
+        <div class="projects-grid"> 
+            <!-- Row 1 -->
+            <div class="details-container color-container project-card">
+                <div class="article-container project-thumb">
+                    <img src="../assets/brainbubblepop.png" alt="Project 1" class="project-img">
+                </div>
+                <h2 class="experience-sub-title project-title"><span class="marquee-title">Brain Bubble Pop</span></h2>
+                <div class="btn-container">
+                    <button class="btn btn-color-2 project-btn" onclick="window.open('https://github.com/jasonpereira518/FlowTrack/', '_blank')">Github</button>
+                    <button class="btn btn-color-2 project-btn" onclick="window.open('https://youtu.be/evTYctkqEuc', '_blank')">Teaser</button>
+                </div>
+            </div>
+            <div class="details-container color-container project-card" data-cat="coming">
+                <div class="article-container">
+                    <img src="../assets/comingSoon.png" alt="Project 2" class="project-img">
+                </div>
+                <h2 class="experience-sub-title project-title">Coming soon...</h2>
+                <div class="btn-container">
+                    <button class="btn btn-color-2 project-btn" onclick="window.open('https://github.com/jasonpereira518', '_blank')">Github</button>
+                    <button class="btn btn-color-2 project-btn" onclick="window.open('https://jasonpereira.netlify.app/', '_blank')">Live Demo</button>
+                </div>
+            </div>
+            <div class="details-container color-container project-card" data-cat="coming">
+                <div class="article-container">
+                    <img src="../assets/comingSoon.png" alt="Project 9" class="project-img">
+                </div>
+                <h2 class="experience-sub-title project-title">Coming soon...</h2>
+                <div class="btn-container">
+                    <button class="btn btn-color-2 project-btn" onclick="window.open('https://github.com/jasonpereira518', '_blank')">Github</button>
+                    <button class="btn btn-color-2 project-btn" onclick="window.open('https://jasonpereira.netlify.app/', '_blank')">Live Demo</button>
+                </div>
+            </div>
+        </div>
+    </section>
   </section>
 
   <footer id="footer" style="margin-top: 12rem;">
@@ -199,7 +236,32 @@
     }
   });
   </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const marqueeTitles = document.querySelectorAll(".marquee-title");
 
+      marqueeTitles.forEach(span => {
+        const fullText = span.textContent.trim();
+
+        // Create wrapper (track)
+        const track = document.createElement("span");
+        track.className = "marquee-track";
+
+        // Two copies for seamless loop
+        const t1 = document.createElement("span");
+        t1.className = "marquee-text";
+        t1.textContent = fullText;
+
+        const t2 = t1.cloneNode(true);
+
+        track.appendChild(t1);
+        track.appendChild(t2);
+
+        // Replace original span with the animated version
+        span.replaceWith(track);
+      });
+    });
+  </script>
   <script>
     // Image popout for Jason Mode gallery
     document.addEventListener("DOMContentLoaded", () => {
