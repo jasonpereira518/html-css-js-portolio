@@ -866,8 +866,12 @@ footer p {
   border-radius: var(--edu-radius);
   box-shadow: var(--edu-shadow);
   padding: 1.25rem 1.25rem 1rem;
-  border: 1px solid rgba(0,0,0,0.06);
+  border: rgb(53, 53, 53) 0.1rem solid;
+  border-color: rgb(163, 163, 163, 0.35);
+
 }
+
+
 
 .edu-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
