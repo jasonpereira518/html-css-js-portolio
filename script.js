@@ -314,6 +314,54 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+// ==== Project hover videos ====
+document.addEventListener("DOMContentLoaded", () => {
+  // Any .project-card with a data-video-src gets a hover video
+  const videoCards = document.querySelectorAll('.project-card[data-video-src]');
+
+  videoCards.forEach(card => {
+    const videoSrc = card.dataset.videoSrc;
+    const mediaContainer = card.querySelector('.article-container');
+    const img = mediaContainer ? mediaContainer.querySelector('.project-img') : null;
+
+    if (!videoSrc || !mediaContainer || !img) return;
+
+    // Create the <video> element
+    const video = document.createElement('video');
+    video.src = videoSrc;
+    video.className = 'project-video';
+    video.muted = true;        // needed for autoplay
+    video.loop = true;         // keep going
+    video.playsInline = true;  // iOS-friendly
+
+    // Insert the video into the same container as the image
+    mediaContainer.appendChild(video);
+
+    // Helper: start (or resume) playback
+    const playVideo = () => {
+      video.play().catch(() => {
+        // Autoplay blocked; user hovering again will retry.
+      });
+    };
+
+    // On hover: show the video + play it
+    card.addEventListener('mouseenter', () => {
+      card.classList.add('show-video');
+      playVideo();
+    });
+
+    // On unhover: hide the video visually but KEEP IT PLAYING
+    card.addEventListener('mouseleave', () => {
+      card.classList.remove('show-video');
+      // IMPORTANT: do not pause() or reset currentTime,
+      // so the video keeps playing behind the scenes.
+    });
+
+    // Preload enough data so it starts smoothly
+    video.load();
+  });
+});
+
 
 
 document.addEventListener("DOMContentLoaded", () => {

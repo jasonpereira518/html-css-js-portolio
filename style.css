@@ -501,6 +501,7 @@ article.icon {
 
 .project-title {
     margin: 1rem;
+    margin-top: -1.08rem;
     color: black;
 }
 
@@ -567,6 +568,49 @@ article.icon {
   .projects-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* === Project hover video === */
+
+/* Make the project image container a fixed 1:1 box */
+.project-card .article-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2rem;
+}
+
+/* Maintain a 1:1 aspect ratio for the media box */
+.project-card .article-container::before {
+  content: "";
+  display: block;
+  padding-top: 100%; /* 1:1 aspect ratio */
+}
+
+/* Both image and video fill that box with the same cropping */
+.project-card .project-img,
+.project-card .project-video {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 2rem;
+  transition: opacity 0.25s ease;
+}
+
+/* Video is invisible (but in place) by default */
+.project-card .project-video {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* When card is "show-video", fade video in and image out */
+.project-card.show-video .project-video {
+  opacity: 1;
+}
+
+.project-card.show-video .project-img {
+  opacity: 0;
 }
 
 
