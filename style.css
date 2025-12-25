@@ -435,11 +435,14 @@ section {
     margin: auto 0;
 }
 
+.italic-text {
+  font-style: italic;
+}
+
 #leadership,
 #education {
   position: relative;
 }
-
 
 /* EXPERIENCE SECTION */
 
@@ -1502,3 +1505,4 @@ body.modal-open {
 @media (prefers-reduced-motion: reduce) {
   #scroll-progress { transition: none; }
 }
+
