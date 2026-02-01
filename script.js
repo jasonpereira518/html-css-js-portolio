@@ -462,6 +462,36 @@ function activateLink() {
 }
 
 window.addEventListener('scroll', activateLink);
+// ===== Certifications Show More / Less =====
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.getElementById("certs-toggle-btn");
+  const hiddenCerts = document.querySelectorAll(".cert-hidden");
+
+  // If no hidden certs exist, hide the button
+  if (!toggleBtn) return;
+  if (!hiddenCerts.length) {
+    toggleBtn.parentElement.style.display = "none";
+    return;
+  }
+
+  let expanded = false;
+
+  toggleBtn.addEventListener("click", () => {
+    expanded = !expanded;
+
+    hiddenCerts.forEach(cert => {
+      cert.style.display = expanded ? "grid" : "none";
+    });
+
+    toggleBtn.textContent = expanded ? "Show less" : "Show more";
+    toggleBtn.setAttribute("aria-expanded", expanded ? "true" : "false");
+
+    // Optional: keep scroll progress accurate if you use your progress bar
+    if (typeof window.updateScrollProgress === "function") {
+      requestAnimationFrame(() => window.updateScrollProgress());
+    }
+  });
+});
 
 
 // Scroll progress bar

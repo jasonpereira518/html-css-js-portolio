@@ -652,6 +652,177 @@ article.icon {
 }
 
 
+/* ===== Certifications (Education section) ===== */
+
+.certs-wrap {
+  max-width: 900px;
+  margin: 2.25rem auto 0;
+}
+
+.certs-title {
+  margin: 0 0 1rem 0;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--heading-black, #000);
+}
+
+/* List container (not cards) */
+.certs-list {
+  display: grid;
+  gap: 0.9rem;
+}
+
+/* Row layout */
+.cert-row {
+  --cert-color: #13294B; /* fallback */
+  display: grid;
+  grid-template-columns: 44px 1fr auto;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.85rem 0.9rem;
+
+  /* “not cards”: no box shadow, no big rounded card background */
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+.certs-list .cert-row:first-child {
+  border-top: 1px solid rgba(0,0,0,0.12);
+}
+
+.cert-logo {
+  width: 44px;
+  aspect-ratio: 1 / 1; /* guarantees square */
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.cert-meta {
+  min-width: 0;
+}
+
+.cert-name {
+  font-weight: 700;
+  color: rgba(0,0,0,0.88);
+  line-height: 1.2;
+}
+
+.cert-issuer {
+  margin-top: 0.15rem;
+  font-weight: 600;
+  color: rgba(0,0,0,0.55);
+  font-size: 0.95rem;
+}
+
+/* LinkedIn-style rounded button */
+.cert-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.18);
+  background: #fff;
+
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: rgba(0,0,0,0.75);
+  text-decoration: none;
+
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.cert-btn:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in oklab, var(--cert-color) 55%, rgba(0,0,0,0.18));
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+}
+
+/* subtle brand tint on hover */
+.cert-row:hover .cert-btn {
+  background: color-mix(in oklab, var(--cert-color) 10%, #fff);
+}
+
+/* Credential ID line */
+.cert-id {
+  margin-top: 0.15rem;
+  font-weight: 600;
+  color: rgba(0,0,0,0.48);
+  font-size: 0.9rem;
+}
+.cert-id span {
+  font-weight: 700;
+  color: rgba(0,0,0,0.62);
+}
+
+/* Button icon + prevent underline on hover */
+.cert-btn {
+  text-decoration: none !important;
+  gap: 0.45rem;
+}
+
+.cert-btn:hover,
+.cert-btn:focus,
+.cert-btn:active {
+  text-decoration: none !important;
+}
+
+.cert-btn-icon {
+  flex: 0 0 auto;
+  transition: transform 0.18s ease;
+}
+
+.cert-btn:hover .cert-btn-icon {
+  transform: translate(1px, -1px);
+}
+
+/* Hide extra certifications by default */
+.cert-hidden { display: none; }
+
+/* Show more / less button */
+.certs-toggle-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.2rem;
+}
+
+.certs-toggle-btn {
+  padding: 0.55rem 1.25rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.18);
+  background: #fff;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.certs-toggle-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+}
+
+
+
+/* Mobile stacking */
+@media (max-width: 650px) {
+  .cert-row {
+    grid-template-columns: 40px 1fr;
+    grid-template-rows: auto auto;
+    row-gap: 0.65rem;
+  }
+
+  .cert-btn {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+}
+
+
 /* CONTACT */
 
 #contact {
