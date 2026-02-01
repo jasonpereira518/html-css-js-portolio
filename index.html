@@ -14,17 +14,16 @@
 </head>
 
 <body>
-    <!-- <div class="custom-cursor"></div> -->
     <nav id="desktop-nav">
         <a href="#top" class="logo">Jason Pereira</a>
         <div>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
-                <li><a href="#experience">Skills</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#leadership">Leadership</a></li>
                 <li><a href="#education">Education</a></li>
-                <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -38,7 +37,8 @@
             </div>
             <div class="menu-links">
                 <li><a href="#about" onclick="toggleMenu()">About</a></li>
-                <li><a href="#experience" onclick="toggleMenu()">Skills</a></li>
+                <li><a href="#skills" onclick="toggleMenu()">Skills</a></li>
+                <li><a href="#Experience" onclick="toggleMenu()">Experience</a></li>
                 <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
                 <li><a href="#leadership" onclick="toggleMenu()">Leadership</a></li>
                 <li><a href="#education" onclick="toggleMenu()">Education</a></li>
@@ -109,9 +109,9 @@
                 </div>
             </div>
         </div>
-        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#experience'">
+        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#skills'">
     </section>
-    <section id="experience">
+    <section id="skills">
         <p class="section__text__p1">Explore My</p>
         <h1 class="title">Skills</h1>
         <div class="experience-details-container">
@@ -212,8 +212,85 @@
                 </div>
             </div>
         </div>
-        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#projects'">
+        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#experience'">
     </section>
+    <section id="experience">
+        <p class="section__text__p1">Where I’ve Worked</p>
+        <h1 class="title">Experience</h1>
+
+        <div class="experience-section-container">
+            <!-- Experience Card 1 -->
+            <div class="details-container experience-card" data-aos="fade-up" style="--org-color:#CD1409;">
+            <div class="experience-card-top">
+                <div class="experience-card-title">
+                    <h2 class="experience-role">Incoming Software Engineer Intern 2026</h2>
+                    <p class="experience-org">Wells Fargo</p>
+                    <p class="experience-dates">May 2026 — August 2026</p>
+                </div>
+
+                <img
+                    src="./assets/wells_fargo_logo.png"
+                    alt="Company logo"
+                    class="experience-logo"
+                />
+            </div>
+
+            <div class="experience-tags">
+                <span class="exp-tag">Python</span>
+                <span class="exp-tag">Web</span>
+                <span class="exp-tag">AI/ML</span>
+            </div>
+
+            <ul class="experience-bullets">
+                <li>Impact bullet #1 (quantify if possible: %, $, time saved, users).</li>
+                <li>Impact bullet #2 (what you built + what it enabled).</li>
+                <li>Impact bullet #3 (tools/stack + collaboration).</li>
+            </ul>
+
+            <div class="btn-container exp-btn-row">
+                <button class="btn btn-color-2 project-btn" onclick="window.open('https://www.wellsfargo.com/', '_blank')">Website</button>
+                <button class="btn btn-color-2 project-btn" onclick="window.open('https://github.com/', '_blank')">Github</button>
+            </div>
+            </div>
+
+            <!-- Experience Card 2 -->
+            <div class="details-container experience-card" data-aos="fade-up" data-aos-delay = "150" style="--org-color:#0281B2;">
+            <div class="experience-card-top">
+                <div class="experience-card-title">
+                    <h2 class="experience-role">Artificial Intelligence Intern</h2>
+                    <p class="experience-org">Arthmetis</p>
+                    <p class="experience-dates">June 2025 — Present</p>
+                </div>
+
+                <img
+                    src="./assets/arthmetis_logo.jpeg"
+                    alt="Company logo"
+                    class="experience-logo"
+                />
+            </div>
+
+            <div class="experience-tags">
+                <span class="exp-tag">Python</span>
+                <span class="exp-tag">LangChain</span>
+                <span class="exp-tag">Vector Embeddings</span>
+            </div>
+
+            <ul class="experience-bullets">
+                <li>Impact bullet #1 (quantify if possible: %, $, time saved, users).</li>
+                <li>Impact bullet #2 (what you built + what it enabled).</li>
+                <li>Impact bullet #3 (tools/stack + collaboration).</li>
+            </ul>
+
+            <div class="btn-container exp-btn-row">
+                <button class="btn btn-color-2 project-btn" onclick="window.open('https://www.arthmetis.ai/', '_blank')">Website</button>
+                <button class="btn btn-color-2 project-btn" onclick="window.open('https://github.com/', '_blank')">Github</button>
+            </div>
+            </div>
+        </div>
+
+        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#projects'">
+        </section>
+
     <section id="projects">
         <p class="section__text__p1">Browse My Recent</p>
         <h1 class="title">Projects</h1>
@@ -410,10 +487,9 @@
                         <h3>VP Of Competition</h3>
                         <h4 style="color: #4a7ce7;">AKHS FBLA Chapter</h4>
                         <p>• 4th Place National Leadership Conference FBLA (2025, Web Design)
-                            <br />• 1st Place NC
-                            States (2025, Web Design)
-                            <br />• 1st Place NC States (2024, Social Media Strategies)
-                            <br />• Organized 2024 Southwest Regional Leadership Conference</p>
+                            <br />• 1st Place States (2025, Web Design)
+                            <br />• 1st Place States (2024, Social Media Strategies)
+                            <br />• Organized 2024 Southwest Regional Leadership Conference<br/>at AKHS</p>
                     </div>
                 </div>
                 <div class="about-containers">
@@ -421,7 +497,9 @@
                         <img src="./assets/OldWell.png" alt="BPSS" class="icon">
                         <h3>Buckley Public Service Scholar</h3>
                         <h4 style="color: #4ab3e7;">Carolina Center for Public Service</h4>
-                        <p>• Robert E. Bryan Fellow<br />• Completed Orientation and Information Sessions<br />• Various Skills Training courses
+                        <p>• <a href="https://ccps.unc.edu/ccps-opportunity/robert-e-bryan-fellowships/" target="_blank"
+                                rel="noopener noreferrer" style="color: rgb(85, 85, 85);">
+                                Robert E. Bryan Fellow </a><br />• Completed Orientation and Information Sessions<br />• Various Skills Training courses
                             throughout the semester<br />• Working towards 300+ service hours and BPSS Graduation</p>
                     </div>
                     <div class="details-container">
@@ -452,8 +530,12 @@
                     <p class="edu-years">2025 — 2027 (expected)</p>
                     <ul class="edu-highlights">
                         <li>Buckley Public Service Scholar</li>
+                        <li>Velocity Labs · Carolina Invest. Group</li>
                         <li>CS + Social Good · App Team Carolina</li>
-                        <li>Carolina Skylab · FBLA-C · TEDxUNC</li>
+                        <li>Carolina Skylab · FBLA-C · <a href="https://www.ted.com/tedx/events/66856" target="_blank"
+                                rel="noopener noreferrer" style="color:#EB0028; font-weight: 500;">
+                                TEDxUNC
+                            </a></li>
                         <li>Duke AI Hackathon -
                             <a href="https://devpost.com/software/case-closed-hjr24p" target="_blank"
                                 rel="noopener noreferrer" style="color:#2f82ba;">
@@ -575,7 +657,8 @@
             <div class="nav-links-container">
                 <ul class="nav-links">
                     <li><a href="#about">About</a></li>
-                    <li><a href="#experience">Skills</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#leadership">Leadership</a></li>
                     <li><a href="#education">Education</a></li>
