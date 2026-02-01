@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ===== Hide custom cursor when over PDF iframe =====
-document.addEventListener("DOMContentLoaded", () => {
+/* document.addEventListener("DOMContentLoaded", () => {
   const pdfFrame = document.getElementById("resume-frame");
   const cursor = document.querySelector(".custom-cursor");
 
@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cursor.style.opacity = "1";
     });
   }
-});
+}); */
 
 // Header Typewriter Effect
 document.addEventListener("DOMContentLoaded", function () {

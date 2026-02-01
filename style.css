@@ -11,9 +11,9 @@ body {
     font-family: "Poppins", sans-serif;
 }
 
-body,a,button,.icon,.logo, .gallery-item img {
+/*body,a,button,.icon,.logo, .gallery-item img {
     cursor: none !important;
-}
+}*/
 
 html {
     scroll-behavior: smooth;
@@ -1112,7 +1112,7 @@ a[target="_blank"]:hover {
     }
 }*/
 
-
+/*
 .custom-cursor {
   position: fixed;
   top: 0;
@@ -1137,13 +1137,12 @@ button:hover ~ .custom-cursor,
   background-color: rgba(75, 156, 211, 0.3);
 }
 
-/* Click = shrink */
 .custom-cursor.click {
   transform: translate(-50%, -50%) scale(0.7);
 }
 
 
-
+*/
 
 /* ===== Jason Mode Page ===== */
 
