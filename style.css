@@ -958,6 +958,20 @@ footer p {
   position: relative; /* allows absolute-positioned ribbon */
 }
 
+/* === Pin project buttons to bottom of card === */
+.project-card{
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card .article-container{
+  flex-shrink: 0;
+}
+
+.project-card .btn-container{
+  margin-top: auto;
+}
+
 .project-card--winner .project-ribbon {
   position: absolute;
   top: 16px;
@@ -1013,6 +1027,24 @@ footer p {
   );
   transform: skewX(-25deg);
   animation: shine 4s ease-in-out infinite;
+}
+
+.project-meta {
+  margin: -0.85rem 1.25rem 1rem;  
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.55);
+  line-height: 1.25;
+  text-align: center;
+}
+
+.project-meta {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
 }
 
 /* ✨ Keyframes for shimmer */
