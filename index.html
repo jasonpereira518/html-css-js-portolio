@@ -1225,8 +1225,8 @@
                 </ul>
             </div>
         </nav>
-        <p>Copyright &#169; 2025 Jason Pereira. All Rights Reserved</p>
-        <p style="font-size:0.8rem" id="last-updated"></p>
+        <p>Copyright &#169; 2026 Jason Pereira. All Rights Reserved</p>
+        <p id="last-updated" style="font-size:0.8rem">Last updated: …</p>
     </footer>
     <div class="custom-cursor"></div>
 
@@ -1297,6 +1297,23 @@
             requestAnimationFrame(() => { fill.style.width = (fill.dataset.pct || 0) + "%"; });
             });
         }
+
+        let startScrollY = 0;
+
+        window.addEventListener("scroll", () => {
+        if (!sidebarOpen) return;
+
+        if (startScrollY === 0) {
+            startScrollY = window.scrollY;
+        }
+
+        const distanceScrolled = Math.abs(window.scrollY - startScrollY);
+
+        if (distanceScrolled > 100) {
+            closeSidebar();
+            startScrollY = 0;
+        }
+        });
         </script>
 
     <!-- Jason Mode Note -->

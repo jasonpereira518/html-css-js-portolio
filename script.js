@@ -418,8 +418,36 @@ document.addEventListener("mouseenter", () => {
 });
 
 
+document.addEventListener("DOMContentLoaded", async () => {
+  const el = document.getElementById("last-updated");
+  if (!el) return;
 
-document.addEventListener("DOMContentLoaded", () => {
+  try {
+    const res = await fetch(
+      "https://api.github.com/repos/jasonpereira518/html-css-js-portolio"
+    );
+
+    if (!res.ok) throw new Error("GitHub API failed");
+
+    const data = await res.json();
+
+    const date = new Date(data.pushed_at);
+
+    el.textContent = "Last updated: " + date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    });
+
+  } catch (err) {
+    console.error(err);
+    el.textContent = "Last updated: unavailable";
+  }
+});
+
+
+
+/* document.addEventListener("DOMContentLoaded", () => {
   const el = document.getElementById("last-updated");
   if (el) {
     const date = new Date(document.lastModified);
@@ -430,7 +458,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     el.textContent = `Last updated: ${formatted}`;
   }
-});
+}); */
 
 
 console.log("%c👋 Hey there! Curious dev? Let's connect on LinkedIn!!", 
