@@ -1224,6 +1224,13 @@ footer p {
   line-height: 1.35;
 }
 
+.edu-honors{
+  margin: 0 0 .25rem 0;
+  color: var(--edu-accent-dark);
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
 .edu-degree{
   margin: 0;
   color: var(--edu-text);
