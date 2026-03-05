@@ -89,6 +89,13 @@ nav {
   backdrop-filter: blur(8px);
 }
 
+.section-subtitle {
+  color: rgb(85, 85, 85);
+  font-weight: 600;
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+}
+
 body {
   scroll-padding-top: 80px;
   margin-top: 0;
@@ -501,6 +508,28 @@ section {
     position: relative;
 }
 
+#skills .skills-section-container {
+  display: grid;
+  grid-template-columns: repeat(2, 520px); 
+  justify-content: center;
+  gap: 3rem;
+  margin: 0 auto;
+}
+
+#skills .skills-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 3.5rem;
+}
+
+#skills .skill-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  min-width: 0;
+}
+
 .experience-sub-title {
     color: rgb(85, 85, 85);
     font-weight: 600;
@@ -508,30 +537,82 @@ section {
     margin-bottom: 2rem;
 }
 
-.experience-details-container {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+@media (max-width: 900px) {
+  #skills .skills-section-container {
+    grid-template-columns: 1fr;
+  }
+}
+/* stack on smaller screens */
+@media (max-width: 900px) {
+  .experience-section-container {
+    grid-template-columns: 1fr;
+  }
 }
 
-.article-container {
-    display: flex;
-    text-align: initial;
-    flex-wrap: wrap;
-    flex-direction: row;
-    gap: 2.5rem;
-    justify-content: space-around;
+#skills .skill-icon {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 34px;
 }
 
-article {
-    display: flex;
-    width: 10rem;
-    justify-content: space-around;
-    gap: 0.5rem;
+#skills .skill-icon i {
+  font-size: 26px;       /* tweak */
+  line-height: 1;
+  display: block;
 }
+
+#skills .skill-icon img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  display: block;
+}
+
+#skills .skill-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+  font-size: 1.2rem;
+}
+
+#skills .details-container {
+  padding: 2rem 2.5rem;
+}
+
+#skills .skills-card {
+  padding: 2rem 2.5rem;
+}
+
+/* Title (Python, Java, etc.) */
+.skill-text .skill-name {
+  font-weight: 700;
+
+}
+
+/* Level (Experienced/Intermediate) */
+.skill-text .skill-level {
+  color: rgba(0,0,0,0.75);
+  font-size: 0.95rem;
+  margin-top: 0.15rem;
+}
+
+
+.article-container { display: flex; text-align: initial; flex-wrap: wrap; flex-direction: row; gap: 2.5rem; justify-content: space-around; }
 
 article.icon {
     cursor: default;
+}
+
+article .skill-text {
+  text-align: left;
+  line-height: 1.15;
+}
+
+article .skill-text h3,
+article .skill-text p {
+  margin: 0;
 }
 
 /* ===== Nav Contact Icon ===== */
