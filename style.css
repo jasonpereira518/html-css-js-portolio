@@ -1011,11 +1011,28 @@ footer p {
 /* ADDITIONAL */
 
 /* Hover box */
-.details-container:hover, 
+.details-container:not(.experience-card):hover,
 .color-container:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Keep transitions defined on the base elements (cleaner + consistent) */
+.details-container:not(.experience-card),
+.color-container {
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+#experience .experience-card {
+  position: relative;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  will-change: transform;
+}
+
+#experience .experience-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  z-index: 2;
 }
 
 /* Typewriter Effect */
