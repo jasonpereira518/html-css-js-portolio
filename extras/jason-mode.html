@@ -6,6 +6,7 @@
   <title>Jason Mode</title>
   <link rel="icon" type="image/x-icon" href="../assets/airpodsmax.png">
   <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="jason-mode.css">
   <link rel="stylesheet" href="../mediaqueries.css">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
@@ -530,130 +531,140 @@
     </section>
 
         <!-- Accomplishments Timeline -->
-    <section id="timeline">
-      <div class="timeline-pin">
-        <div class="timeline-stage">
-          <div class="timeline-head">
-            <p class="section__text__p1">Month by Month</p>
-            <h2 class="title">Accomplishments Timeline</h2>
-          </div>
+    <section id="timeline" class="accomp-timeline" aria-labelledby="accomp-timeline-heading">
+      <div class="accomp-timeline__inner">
+        <header class="accomp-timeline__head">
+          <p class="section__text__p1">Month by Month Timeline</p>
+          <h2 class="title" id="accomp-timeline-heading">My Accomplishments</h2>
+        </header>
 
-          <div class="timeline-viewport">
-            <div class="timeline-track">
+        <div class="accomp-timeline__viewport">
+          <div class="accomp-timeline__track">
 
-              <article class="timeline-item timeline-item--top">
-                <div class="timeline-dot" aria-hidden="true"></div>
-                <div class="timeline-connector" aria-hidden="true"></div>
-                <div class="timeline-card">
-                  <span class="timeline-month">Aug 2025</span>
-                  <h3 class="timeline-main">Started building Intelitrade trading platform</h3>
-                  <ul class="timeline-list">
-                    <li>Built first sentiment analysis model</li>
-                    <li>Integrated financial news scraping</li>
-                    <li>Designed early dashboard prototype</li>
-                  </ul>
-                </div>
-              </article>
-
-              <article class="timeline-item timeline-item--bottom">
-                <div class="timeline-dot" aria-hidden="true"></div>
-                <div class="timeline-connector" aria-hidden="true"></div>
-                <div class="timeline-card">
-                  <span class="timeline-month">Sep 2025</span>
-                  <h3 class="timeline-main">Won Duke AI Hackathon with Case Closed</h3>
-                  <ul class="timeline-list">
-                    <li>Built legal research AI prototype</li>
-                    <li>Fine-tuned BERT-style NLP workflow</li>
-                    <li>Presented to judges and early supporters</li>
-                  </ul>
-                </div>
-              </article>
-
-              <article class="timeline-item timeline-item--top">
-                <div class="timeline-dot" aria-hidden="true"></div>
-                <div class="timeline-connector" aria-hidden="true"></div>
-                <div class="timeline-card">
-                  <span class="timeline-month">Oct 2025</span>
-                  <h3 class="timeline-main">Joined Velocity Labs Quant Team</h3>
-                  <ul class="timeline-list">
-                    <li>Learned options and volatility modeling</li>
-                    <li>Built early market analysis scripts</li>
-                    <li>Collaborated on trading strategy ideas</li>
-                  </ul>
-                </div>
-              </article>
-
-              <article class="timeline-item timeline-item--bottom">
-                <div class="timeline-dot" aria-hidden="true"></div>
-                <div class="timeline-connector" aria-hidden="true"></div>
-                <div class="timeline-card">
-                  <span class="timeline-month">Nov 2025</span>
-                  <h3 class="timeline-main">Expanded portfolio and startup project momentum</h3>
-                  <ul class="timeline-list">
-                    <li>Refined product positioning across projects</li>
-                    <li>Improved UI direction for shipped demos</li>
-                    <li>Strengthened technical storytelling</li>
-                  </ul>
-                </div>
-              </article>
-
-              <article class="timeline-item timeline-item--top">
-                <div class="timeline-dot" aria-hidden="true"></div>
-                <div class="timeline-connector" aria-hidden="true"></div>
-                <div class="timeline-card">
-                  <span class="timeline-month">Dec 2025</span>
-                  <h3 class="timeline-main">Deepened AI, data, and product skill set</h3>
-                  <ul class="timeline-list">
-                    <li>Completed advanced technical coursework</li>
-                    <li>Sharpened analytics and dashboard design</li>
-                    <li>Built stronger product instincts</li>
-                  </ul>
-                </div>
-              </article>
-
-              <article class="timeline-item timeline-item--bottom">
-                <div class="timeline-dot" aria-hidden="true"></div>
-                <div class="timeline-connector" aria-hidden="true"></div>
-                <div class="timeline-card">
-                  <span class="timeline-month">Jan 2026</span>
-                  <h3 class="timeline-main">Started a high-growth semester at UNC</h3>
-                  <ul class="timeline-list">
-                    <li>Balanced CS, stats, and business priorities</li>
-                    <li>Built momentum across campus organizations</li>
-                    <li>Advanced startup and internship goals</li>
-                  </ul>
-                </div>
-              </article>
-
-              <article class="timeline-item timeline-item--top">
-                <div class="timeline-dot" aria-hidden="true"></div>
-                <div class="timeline-connector" aria-hidden="true"></div>
-                <div class="timeline-card">
-                  <span class="timeline-month">Feb 2026</span>
-                  <h3 class="timeline-main">Became a TEDxUNC speaker</h3>
-                  <ul class="timeline-list">
-                    <li>Developed The Velocity Paradox talk</li>
-                    <li>Presented to a live audience on campus</li>
-                    <li>Turned ideas into a stronger public narrative</li>
-                  </ul>
-                </div>
-              </article>
-
-              <article class="timeline-item timeline-item--bottom">
-                <div class="timeline-dot" aria-hidden="true"></div>
-                <div class="timeline-connector" aria-hidden="true"></div>
-                <div class="timeline-card">
-                  <span class="timeline-month">Mar 2026</span>
-                  <h3 class="timeline-main">Refining portfolio, products, and personal brand</h3>
-                  <ul class="timeline-list">
-                    <li>Upgraded portfolio UX and visuals</li>
-                    <li>Built new app and startup concepts</li>
-                    <li>Prepared for internships and hackathons</li>
-                  </ul>
-                </div>
-              </article>
-
+            <!-- Timeline start marker -->
+            <div class="accomp-timeline__marker accomp-timeline__marker--start" aria-hidden="true">
+              <span class="accomp-timeline__marker-label">Timeline Begins</span>
+              <span class="accomp-timeline__marker-date">Start — Aug 2025</span>
             </div>
+
+            <article class="accomp-timeline__item accomp-timeline__item--top">
+              <div class="accomp-timeline__dot" aria-hidden="true"></div>
+              <div class="accomp-timeline__connector" aria-hidden="true"></div>
+              <div class="accomp-timeline__card">
+                <span class="accomp-timeline__month">Aug 2025</span>
+                <h3 class="accomp-timeline__title">Started building Intelitrade trading platform</h3>
+                <ul class="accomp-timeline__list">
+                  <li>Built first sentiment analysis model</li>
+                  <li>Integrated financial news scraping</li>
+                  <li>Designed early dashboard prototype</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="accomp-timeline__item accomp-timeline__item--bottom">
+              <div class="accomp-timeline__dot" aria-hidden="true"></div>
+              <div class="accomp-timeline__connector" aria-hidden="true"></div>
+              <div class="accomp-timeline__card">
+                <span class="accomp-timeline__month">Sep 2025</span>
+                <h3 class="accomp-timeline__title">Won Duke AI Hackathon with Case Closed</h3>
+                <ul class="accomp-timeline__list">
+                  <li>Built legal research AI prototype</li>
+                  <li>Fine-tuned BERT-style NLP workflow</li>
+                  <li>Presented to judges and early supporters</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="accomp-timeline__item accomp-timeline__item--top">
+              <div class="accomp-timeline__dot" aria-hidden="true"></div>
+              <div class="accomp-timeline__connector" aria-hidden="true"></div>
+              <div class="accomp-timeline__card">
+                <span class="accomp-timeline__month">Oct 2025</span>
+                <h3 class="accomp-timeline__title">Joined Velocity Labs Quant Team</h3>
+                <ul class="accomp-timeline__list">
+                  <li>Learned options and volatility modeling</li>
+                  <li>Built early market analysis scripts</li>
+                  <li>Collaborated on trading strategy ideas</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="accomp-timeline__item accomp-timeline__item--bottom">
+              <div class="accomp-timeline__dot" aria-hidden="true"></div>
+              <div class="accomp-timeline__connector" aria-hidden="true"></div>
+              <div class="accomp-timeline__card">
+                <span class="accomp-timeline__month">Nov 2025</span>
+                <h3 class="accomp-timeline__title">Expanded portfolio and startup project momentum</h3>
+                <ul class="accomp-timeline__list">
+                  <li>Refined product positioning across projects</li>
+                  <li>Improved UI direction for shipped demos</li>
+                  <li>Strengthened technical storytelling</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="accomp-timeline__item accomp-timeline__item--top">
+              <div class="accomp-timeline__dot" aria-hidden="true"></div>
+              <div class="accomp-timeline__connector" aria-hidden="true"></div>
+              <div class="accomp-timeline__card">
+                <span class="accomp-timeline__month">Dec 2025</span>
+                <h3 class="accomp-timeline__title">Deepened AI, data, and product skill set</h3>
+                <ul class="accomp-timeline__list">
+                  <li>Completed advanced technical coursework</li>
+                  <li>Sharpened analytics and dashboard design</li>
+                  <li>Built stronger product instincts</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="accomp-timeline__item accomp-timeline__item--bottom">
+              <div class="accomp-timeline__dot" aria-hidden="true"></div>
+              <div class="accomp-timeline__connector" aria-hidden="true"></div>
+              <div class="accomp-timeline__card">
+                <span class="accomp-timeline__month">Jan 2026</span>
+                <h3 class="accomp-timeline__title">Started a high-growth semester at UNC</h3>
+                <ul class="accomp-timeline__list">
+                  <li>Balanced CS, stats, and business priorities</li>
+                  <li>Built momentum across campus organizations</li>
+                  <li>Advanced startup and internship goals</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="accomp-timeline__item accomp-timeline__item--top">
+              <div class="accomp-timeline__dot" aria-hidden="true"></div>
+              <div class="accomp-timeline__connector" aria-hidden="true"></div>
+              <div class="accomp-timeline__card">
+                <span class="accomp-timeline__month">Feb 2026</span>
+                <h3 class="accomp-timeline__title">Became a TEDxUNC speaker</h3>
+                <ul class="accomp-timeline__list">
+                  <li>Developed The Velocity Paradox talk</li>
+                  <li>Presented to a live audience on campus</li>
+                  <li>Turned ideas into a stronger public narrative</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="accomp-timeline__item accomp-timeline__item--bottom">
+              <div class="accomp-timeline__dot" aria-hidden="true"></div>
+              <div class="accomp-timeline__connector" aria-hidden="true"></div>
+              <div class="accomp-timeline__card">
+                <span class="accomp-timeline__month">Mar 2026</span>
+                <h3 class="accomp-timeline__title">Refining portfolio, products, and personal brand</h3>
+                <ul class="accomp-timeline__list">
+                  <li>Upgraded portfolio UX and visuals</li>
+                  <li>Built new app and startup concepts</li>
+                  <li>Prepared for internships and hackathons</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Timeline end marker -->
+            <div class="accomp-timeline__marker accomp-timeline__marker--end" aria-hidden="true">
+              <span class="accomp-timeline__marker-label">Present</span>
+              <span class="accomp-timeline__marker-date">Today</span>
+            </div>
+
           </div>
         </div>
       </div>
@@ -764,16 +775,15 @@
     });
   </script>
 
-    <script>
-    // ===== Pinned vertical-to-horizontal timeline =====
+  <script>
+    // Accomplishments horizontal timeline (isolated classes)
     document.addEventListener("DOMContentLoaded", () => {
-      const timeline = document.getElementById("timeline");
-      if (!timeline) return;
+      const section = document.querySelector(".accomp-timeline");
+      if (!section) return;
 
-      const stage = timeline.querySelector(".timeline-stage");
-      const viewport = timeline.querySelector(".timeline-viewport");
-      const track = timeline.querySelector(".timeline-track");
-      const items = Array.from(timeline.querySelectorAll(".timeline-item"));
+      const viewport = section.querySelector(".accomp-timeline__viewport");
+      const track = section.querySelector(".accomp-timeline__track");
+      const items = Array.from(section.querySelectorAll(".accomp-timeline__item"));
 
       let maxTranslate = 0;
       let ticking = false;
@@ -786,10 +796,14 @@
       function setTimelineMeasurements() {
         const isMobile = window.innerWidth <= mobileBreakpoint;
 
+        // Reset to natural flow before recalculating
+        section.style.height = "auto";
+
         if (isMobile) {
-          timeline.style.height = "auto";
           track.style.transform = "translate3d(0,0,0)";
-          items.forEach(item => item.classList.add("is-visible"));
+          items.forEach(item =>
+            item.classList.add("accomp-timeline__item--visible")
+          );
           return;
         }
 
@@ -797,23 +811,25 @@
         const trackWidth = track.scrollWidth;
         maxTranslate = Math.max(0, trackWidth - viewportWidth);
 
-        // Give the section enough vertical distance to "spend" on horizontal travel
-        timeline.style.height = `${window.innerHeight + maxTranslate}px`;
+        // Give this section enough vertical distance so scroll can drive the full horizontal travel
+        const extraScroll = maxTranslate;
+        const targetHeight = window.innerHeight + extraScroll;
+        section.style.height = `${targetHeight}px`;
 
         updateTimeline();
       }
 
       function updateTimeline() {
         const isMobile = window.innerWidth <= mobileBreakpoint;
-
         if (isMobile) return;
 
-        const rect = timeline.getBoundingClientRect();
-        const scrollableDistance = timeline.offsetHeight - window.innerHeight;
+        const rect = section.getBoundingClientRect();
+        const scrollableDistance = section.offsetHeight - window.innerHeight;
 
-        const progress = scrollableDistance > 0
-          ? clamp(-rect.top / scrollableDistance, 0, 1)
-          : 0;
+        const progress =
+          scrollableDistance > 0
+            ? clamp(-rect.top / scrollableDistance, 0, 1)
+            : 0;
 
         const translateX = progress * maxTranslate;
         track.style.transform = `translate3d(${-translateX}px, 0, 0)`;
@@ -821,14 +837,15 @@
         // Reveal cards as they approach the viewport center
         const viewportCenter = window.innerWidth / 2;
         items.forEach(item => {
-          const itemRect = item.getBoundingClientRect();
+          const card = item.querySelector(".accomp-timeline__card") || item;
+          const itemRect = card.getBoundingClientRect();
           const itemCenter = itemRect.left + itemRect.width / 2;
           const distanceFromCenter = Math.abs(itemCenter - viewportCenter);
 
           if (distanceFromCenter < window.innerWidth * 0.42) {
-            item.classList.add("is-visible");
+            item.classList.add("accomp-timeline__item--visible");
           } else {
-            item.classList.remove("is-visible");
+            item.classList.remove("accomp-timeline__item--visible");
           }
         });
       }
