@@ -550,6 +550,60 @@
       </div>
     </section>
   </section>
+  <!-- Work Ticker Banner -->
+
+    <div id="work-ticker" class="work-ticker--open" aria-label="What I am currently working on">
+    <!-- <button
+        id="work-ticker-toggle"
+        class="work-ticker__toggle"
+        type="button"
+        aria-expanded="true"
+        aria-controls="work-ticker"
+    >
+    <span class="work-ticker__toggle-label">Currently Working On</span>
+    </button> -->
+
+  <div class="work-ticker__fade work-ticker__fade--left" aria-hidden="true"></div>
+  <div class="work-ticker__fade work-ticker__fade--right" aria-hidden="true"></div>
+
+  <div class="work-ticker__viewport">
+    <div class="work-ticker__track">
+      <div class="work-ticker__group">
+        <span class="work-ticker__item">Working on Case Closed (AI legal research platform)</span>
+        <span class="work-ticker__divider"></span>
+
+        <span class="work-ticker__item">Building Intelitrade market analytics system</span>
+        <span class="work-ticker__divider"></span>
+
+        <span class="work-ticker__item">Developing Leet Streak iOS app</span>
+        <span class="work-ticker__divider"></span>
+
+        <span class="work-ticker__item">Designing CAT-45 rocket thruster for Carolina Skylab</span>
+        <span class="work-ticker__divider"></span>
+
+        <span class="work-ticker__item">Improving UNC P2P platform UX</span>
+        <span class="work-ticker__divider"></span>
+      </div>
+
+      <div class="work-ticker__group" aria-hidden="true">
+        <span class="work-ticker__item">Working on Case Closed (AI legal research platform)</span>
+        <span class="work-ticker__divider"></span>
+
+        <span class="work-ticker__item">Building Intelitrade market analytics system</span>
+        <span class="work-ticker__divider"></span>
+
+        <span class="work-ticker__item">Developing Leet Streak iOS app</span>
+        <span class="work-ticker__divider"></span>
+
+        <span class="work-ticker__item">Designing CAT-45 rocket thruster for Carolina Skylab</span>
+        <span class="work-ticker__divider"></span>
+
+        <span class="work-ticker__item">Improving UNC P2P platform UX</span>
+        <span class="work-ticker__divider"></span>
+      </div>
+    </div>
+  </div>
+</div>
 
   <footer id="footer" style="margin-top:8rem;">
     <p>Press <span style="color:#4B9CD3"><strong>"J"</strong></span> anywhere to return to the main site.</p>
@@ -619,6 +673,29 @@
     document.addEventListener("mouseleave", () => { cursor.style.opacity = 0; });
     document.addEventListener("mouseenter", () => { cursor.style.opacity = 1; });
   </script>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const ticker = document.getElementById("work-ticker");
+    if (!ticker) return;
+
+    const threshold = 100; // px from bottom before hiding
+
+    function updateTickerVisibility() {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const viewportHeight = window.innerHeight;
+      const fullHeight = document.documentElement.scrollHeight;
+
+      const nearBottom = scrollTop + viewportHeight >= fullHeight - threshold;
+
+      ticker.classList.toggle("work-ticker--hidden", nearBottom);
+    }
+
+    window.addEventListener("scroll", updateTickerVisibility, { passive: true });
+    window.addEventListener("resize", updateTickerVisibility);
+    updateTickerVisibility();
+  });
+</script>
 
   <script>
     // Marquee titles

@@ -587,6 +587,44 @@ document.addEventListener("DOMContentLoaded", () => {
   updateJasonNote();
 });
 
+// ===== Hide ticker when reaching page bottom =====
+
+document.addEventListener("DOMContentLoaded", () => {
+  const ticker = document.getElementById("work-ticker");
+  if (!ticker) return;
+
+  const threshold = 80; // px from bottom before hiding
+
+  function updateTicker() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const viewportHeight = window.innerHeight;
+    const fullHeight = document.documentElement.scrollHeight;
+
+    const nearBottom = scrollTop + viewportHeight >= fullHeight - threshold;
+
+    if (nearBottom) {
+      ticker.classList.add("work-ticker--hidden");
+    } else {
+      ticker.classList.remove("work-ticker--hidden");
+    }
+  }
+
+  window.addEventListener("scroll", updateTicker, { passive: true });
+  updateTicker();
+});
+
+/*
+document.addEventListener("DOMContentLoaded", () => {
+  const ticker = document.getElementById("work-ticker");
+  const toggle = document.getElementById("work-ticker-toggle");
+
+  if (!ticker || !toggle) return;
+
+  toggle.addEventListener("click", () => {
+    const isHidden = ticker.classList.toggle("work-ticker--hidden");
+    toggle.setAttribute("aria-expanded", isHidden ? "false" : "true");
+  });
+});*/
 
 
 /*
