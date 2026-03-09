@@ -562,27 +562,29 @@ document.addEventListener("keydown", (e) => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const jasonNote = document.querySelector(".jason-mode-note");
-  if (!jasonNote) return; // safety
+  if (!jasonNote) return;
 
-  function checkBottom() {
-    const doc = document.documentElement;
-    const scrollTop = window.pageYOffset || doc.scrollTop || 0;
-    const viewportHeight = window.innerHeight || doc.clientHeight;
-    const fullHeight = doc.scrollHeight || document.body.scrollHeight;
+  let lastScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
 
-    // How close to the bottom before we show it
-    const threshold = 120; // px from bottom
+  function updateJasonNote() {
+    const currentScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const fullHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
 
-    if (scrollTop + viewportHeight >= fullHeight - threshold) {
+    const scrollingUp = currentScrollY < lastScrollY;
+    const nearBottom = currentScrollY + viewportHeight >= fullHeight - 120;
+
+    if (scrollingUp || nearBottom) {
       jasonNote.classList.add("visible");
     } else {
       jasonNote.classList.remove("visible");
     }
+
+    lastScrollY = currentScrollY;
   }
 
-  // Run on scroll and on load
-  window.addEventListener("scroll", checkBottom, { passive: true });
-  checkBottom();
+  window.addEventListener("scroll", updateJasonNote, { passive: true });
+  updateJasonNote();
 });
 
 
