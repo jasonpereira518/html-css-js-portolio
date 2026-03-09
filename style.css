@@ -1795,6 +1795,314 @@ button:hover ~ .custom-cursor,
   }
 }
 
+/* ===== Pinned Horizontal Timeline ===== */
+
+#timeline {
+  position: relative;
+  height: auto; /* JS sets desktop height dynamically */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-top: 0;
+  overflow: clip;
+  background: transparent;
+}
+
+#timeline .timeline-pin {
+  position: relative;
+  width: 100%;
+}
+
+#timeline .timeline-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.98) 0%,
+    rgba(255,255,255,0.96) 70%,
+    rgba(255,255,255,0.98) 100%
+  );
+}
+
+#timeline .timeline-head {
+  position: absolute;
+  top: 6.5rem;
+  left: 0;
+  width: 100%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+#timeline .timeline-head .section__text__p1,
+#timeline .timeline-head .title {
+  text-align: center;
+}
+
+#timeline .timeline-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#timeline .timeline-track {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  gap: 4rem;
+  width: max-content;
+  padding: 0 8vw;
+  height: 100%;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+/* center timeline line */
+#timeline .timeline-track::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.12);
+  transform: translateY(-50%);
+  z-index: 0;
+}
+
+/* item container */
+#timeline .timeline-item {
+  position: relative;
+  width: 340px;
+  min-width: 340px;
+  height: 100%;
+  flex: 0 0 auto;
+}
+
+/* precisely centered dot */
+#timeline .timeline-dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #4B9CD3;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 4px rgba(75, 156, 211, 0.16);
+  z-index: 3;
+}
+
+/* connector line from card to dot */
+#timeline .timeline-connector {
+  position: absolute;
+  left: 50%;
+  width: 2px;
+  background: rgba(0, 0, 0, 0.12);
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+#timeline .timeline-item--top .timeline-connector {
+  top: calc(50% - 154px);
+  height: 130px;
+}
+
+#timeline .timeline-item--bottom .timeline-connector {
+  top: calc(50% + 24px);
+  height: 130px;
+}
+
+/* card */
+#timeline .timeline-card {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(32px);
+  width: 100%;
+  max-width: 340px;
+  padding: 1.3rem 1.3rem 1.1rem;
+  border-radius: 2rem;
+  border: rgb(53, 53, 53) 0.1rem solid;
+  border-color: rgb(163, 163, 163);
+  background: rgb(250, 250, 250);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.06);
+  opacity: 0.18;
+  transition: transform 0.5s ease, opacity 0.45s ease, box-shadow 0.25s ease;
+  z-index: 2;
+}
+
+#timeline .timeline-item.is-visible .timeline-card {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+#timeline .timeline-card:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.12);
+}
+
+#timeline .timeline-item--top .timeline-card {
+  bottom: calc(50% + 48px);
+}
+
+#timeline .timeline-item--bottom .timeline-card {
+  top: calc(50% + 48px);
+}
+
+#timeline .timeline-month {
+  display: inline-block;
+  margin-bottom: 0.7rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.46);
+}
+
+#timeline .timeline-main {
+  margin: 0 0 0.8rem 0;
+  color: #13294B;
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+#timeline .timeline-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+#timeline .timeline-list li {
+  position: relative;
+  padding-left: 1rem;
+  color: rgb(85, 85, 85);
+  font-size: 0.93rem;
+  line-height: 1.45;
+}
+
+#timeline .timeline-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #4B9CD3;
+  font-weight: 700;
+}
+
+/* desktop hover polish */
+#timeline .timeline-item.is-visible .timeline-card:hover {
+  transform: translateX(-50%) translateY(-6px);
+}
+
+/* smooth mobile / tablet fallback */
+@media (max-width: 900px) {
+  #timeline {
+    height: auto !important;
+    padding-top: 2rem;
+    overflow: visible;
+  }
+
+  #timeline .timeline-stage {
+    position: relative;
+    top: auto;
+    height: auto;
+    overflow: visible;
+    background: transparent;
+  }
+
+  #timeline .timeline-head {
+    position: relative;
+    top: auto;
+    margin-bottom: 1.5rem;
+    pointer-events: auto;
+  }
+
+  #timeline .timeline-viewport {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 1rem 1rem;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #timeline .timeline-viewport::-webkit-scrollbar {
+    height: 10px;
+  }
+
+  #timeline .timeline-viewport::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.05);
+    border-radius: 999px;
+  }
+
+  #timeline .timeline-viewport::-webkit-scrollbar-thumb {
+    background: rgba(19, 41, 75, 0.22);
+    border-radius: 999px;
+  }
+
+  #timeline .timeline-track {
+    height: 430px;
+    gap: 1.25rem;
+    padding: 0 0.5rem 0.25rem;
+  }
+
+  #timeline .timeline-item {
+    width: 280px;
+    min-width: 280px;
+    scroll-snap-align: start;
+  }
+
+  #timeline .timeline-card {
+    max-width: 280px;
+    padding: 1rem;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  #timeline .timeline-item--top .timeline-card:hover,
+  #timeline .timeline-item--bottom .timeline-card:hover,
+  #timeline .timeline-item.is-visible .timeline-card:hover {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  #timeline .timeline-item--top .timeline-connector {
+    top: calc(50% - 142px);
+    height: 118px;
+  }
+
+  #timeline .timeline-item--bottom .timeline-connector {
+    top: calc(50% + 24px);
+    height: 118px;
+  }
+
+  #timeline .timeline-item--top .timeline-card {
+    bottom: calc(50% + 42px);
+  }
+
+  #timeline .timeline-item--bottom .timeline-card {
+    top: calc(50% + 42px);
+  }
+
+  #timeline .timeline-main {
+    font-size: 1rem;
+  }
+
+  #timeline .timeline-list li {
+    font-size: 0.88rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #timeline .timeline-track,
+  #timeline .timeline-card {
+    transition: none;
+  }
+}
+
 /* ==== Jason Mode Image Popout ==== */
 
 .img-popout-overlay {
