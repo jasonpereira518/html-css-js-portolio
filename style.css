@@ -999,6 +999,7 @@ article .skill-text p {
 footer {
     height: 26vh;
     margin: 0 1rem;
+    margin-bottom: -2.38rem;
 }
 
 footer p {
