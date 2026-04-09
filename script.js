@@ -360,6 +360,208 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+// ===== RIGHT SIDECAR =====
+document.addEventListener("DOMContentLoaded", () => {
+  const panel = document.getElementById("right-sidecar");
+  const overlay = document.getElementById("right-sidecar-overlay");
+  const peek = document.getElementById("right-sidecar-peek");
+  const closeBtn = document.getElementById("right-sidecar-close");
+  const listEl = document.getElementById("right-sidecar-list");
+  const updatedEl = document.getElementById("right-sidecar-updated");
+
+  if (!panel || !overlay || !peek || !listEl) return;
+
+  const EDGE_TRIGGER_PX = 38;
+  const PEEK_HIDE_MS = 1000;
+
+  let isOpen = false;
+  let isPeeking = false;
+  let hideTimer = null;
+
+  function clearHideTimer() {
+    if (hideTimer) {
+      clearTimeout(hideTimer);
+      hideTimer = null;
+    }
+  }
+
+  function showPeek() {
+    if (isOpen) return;
+    clearHideTimer();
+    isPeeking = true;
+    panel.classList.add("peeking");
+    panel.classList.remove("open");
+    panel.setAttribute("aria-hidden", "true");
+    overlay.classList.remove("visible");
+  }
+
+  function hidePanelFully() {
+    clearHideTimer();
+    isOpen = false;
+    isPeeking = false;
+    panel.classList.remove("peeking", "open");
+    panel.setAttribute("aria-hidden", "true");
+    overlay.classList.remove("visible");
+  }
+
+  function scheduleHide() {
+    if (isOpen) return;
+    clearHideTimer();
+    hideTimer = setTimeout(hidePanelFully, PEEK_HIDE_MS);
+  }
+
+  function openPanel() {
+    clearHideTimer();
+    isOpen = true;
+    isPeeking = false;
+    panel.classList.remove("peeking");
+    panel.classList.add("open");
+    panel.setAttribute("aria-hidden", "false");
+    overlay.classList.add("visible");
+  }
+
+  function closePanel() {
+    if (!isOpen) return;
+    isOpen = false;
+    isPeeking = true;
+    panel.classList.remove("open");
+    panel.classList.add("peeking");
+    panel.setAttribute("aria-hidden", "true");
+    overlay.classList.remove("visible");
+    scheduleHide();
+  }
+
+  document.addEventListener("mousemove", (e) => {
+    if (isOpen) return;
+    const nearRightEdge = window.innerWidth - e.clientX <= EDGE_TRIGGER_PX;
+
+    if (nearRightEdge) {
+      showPeek();
+    } else if (isPeeking) {
+      scheduleHide();
+    }
+  });
+
+  peek.addEventListener("click", (e) => {
+    e.stopPropagation();
+    openPanel();
+  });
+
+  closeBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    closePanel();
+  });
+
+  overlay.addEventListener("click", closePanel);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && isOpen) {
+      closePanel();
+    }
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!isOpen) return;
+    if (!panel.contains(e.target)) {
+      closePanel();
+    }
+  });
+
+  panel.addEventListener("mouseenter", () => {
+    if (!isOpen) clearHideTimer();
+  });
+
+  panel.addEventListener("mouseleave", () => {
+    if (!isOpen && isPeeking) {
+      scheduleHide();
+    }
+  });
+
+  loadRightSidecarData(listEl, updatedEl);
+});
+
+async function loadRightSidecarData(listEl, updatedEl) {
+  try {
+    const res = await fetch("./json/building-now.json", { cache: "no-store" });
+    if (!res.ok) throw new Error("Failed to load building-now.json");
+
+    const data = await res.json();
+    const items = Array.isArray(data.items) ? data.items : [];
+
+    if (updatedEl) {
+      updatedEl.textContent = formatRightSidecarDaysAgo(data.lastUpdated);
+    }
+
+    if (!items.length) {
+      listEl.innerHTML = `<p class="right-sidecar-item-description">Nothing added yet — update building-now.json.</p>`;
+      return;
+    }
+
+    listEl.innerHTML = items.map(item => {
+      const name = escapeRightSidecarHtml(item.name || "Untitled");
+      const description = escapeRightSidecarHtml(item.description || "");
+      const status = escapeRightSidecarHtml(item.status || "Active");
+      const statusClass = getRightSidecarStatusClass(item.status);
+
+      return `
+        <article class="right-sidecar-item">
+          <span class="right-sidecar-live-dot" aria-hidden="true"></span>
+          <div>
+            <div class="right-sidecar-item-top">
+              <h3 class="right-sidecar-item-name">${name}</h3>
+              <span class="right-sidecar-status ${statusClass}">${status}</span>
+            </div>
+            <p class="right-sidecar-item-description">${description}</p>
+          </div>
+        </article>
+      `;
+    }).join("");
+  } catch (err) {
+    console.error("Error loading right sidecar data:", err);
+    listEl.innerHTML = `<p class="right-sidecar-item-description">Couldn’t load this panel right now.</p>`;
+    if (updatedEl) updatedEl.textContent = "Update unavailable";
+  }
+}
+
+function getRightSidecarStatusClass(status) {
+  const normalized = String(status || "").trim().toLowerCase();
+  if (normalized === "shipping") return "right-sidecar-status--shipping";
+  if (normalized === "in progress") return "right-sidecar-status--in-progress";
+  if (normalized === "exploring") return "right-sidecar-status--exploring";
+  return "right-sidecar-status--default";
+}
+
+function formatRightSidecarDaysAgo(dateString) {
+  if (!dateString) return "Updated recently";
+
+  const inputDate = new Date(dateString);
+  if (Number.isNaN(inputDate.getTime())) return "Updated recently";
+
+  const now = new Date();
+  const msPerDay = 1000 * 60 * 60 * 24;
+  const utcNow = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+  const utcInput = Date.UTC(inputDate.getFullYear(), inputDate.getMonth(), inputDate.getDate());
+  const diffDays = Math.max(0, Math.floor((utcNow - utcInput) / msPerDay));
+
+  if (diffDays === 0) return "Updated today";
+  if (diffDays === 1) return "Updated 1 day ago";
+  return `Updated ${diffDays} days ago`;
+}
+
+function escapeRightSidecarHtml(str) {
+  return String(str).replace(/[&<>"']/g, (char) => {
+    const map = {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      "\"": "&quot;",
+      "'": "&#39;"
+    };
+    return map[char];
+  });
+}
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const marqueeTitles = document.querySelectorAll(".marquee-title");
@@ -390,6 +592,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const cursor = document.querySelector(".custom-cursor");
 
+if (cursor) {
 let mouseX = -10, mouseY = -10;
 let cursorX = 0, cursorY = 0;
 
@@ -406,6 +609,7 @@ function animateCursor() {
   requestAnimationFrame(animateCursor);
 }
 animateCursor();
+}
 
 document.addEventListener("mousedown", () => cursor.classList.add("click"));
 document.addEventListener("mouseup",   () => cursor.classList.remove("click"));

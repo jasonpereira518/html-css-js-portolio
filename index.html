@@ -414,9 +414,13 @@
                     <p class="companies-label">Incoming / Currently / Previously</p>
                     <div class="companies-logos">
                         <div class="company-item" onclick="window.open('https://www.wellsfargo.com/', '_blank')">
+                        <img src="./assets/AWS_logo.jpg" alt="Amazon AWS" class="company-logo" />
+                        <span class="company-name" style="color: #203442;">Amazon Web Services</span>
+                        </div>
+                        <!-- <div class="company-item" onclick="window.open('https://www.wellsfargo.com/', '_blank')">
                         <img src="./assets/wells_fargo_logo.png" alt="Wells Fargo" class="company-logo" />
                         <span class="company-name" style="color: #CD1409;">Wells Fargo</span>
-                        </div>
+                        </div> -->
                         <div class="company-item" onclick="window.open('https://www.arthmetis.ai/', '_blank')">
                         <img src="./assets/arthmetis_logo.jpeg" alt="Arthmetis" class="company-logo" />
                         <span class="company-name" style="color: #0281B2;">Arthmetis</span>
@@ -1229,6 +1233,35 @@
             <p id="cf-status" class="cf-status" role="status" aria-live="polite"></p>
         </form> -->
     </section>
+
+    <!-- ===== RIGHT MAC-SIDECAR STYLE PANEL ===== -->
+<div id="right-sidecar-overlay" aria-hidden="true"></div>
+
+<aside id="right-sidecar" aria-hidden="true" aria-label="Live Now panel">
+  <button id="right-sidecar-peek" aria-label="Open live panel">
+    <span class="right-sidecar-peek-glow"></span>
+    <span class="right-sidecar-peek-line"></span>
+  </button>
+
+  <div class="right-sidecar-card">
+    <div class="right-sidecar-header">
+      <div>
+        <p class="right-sidecar-eyebrow">Live</p>
+        <h2 class="right-sidecar-title">What I’m Building Now</h2>
+        <p class="right-sidecar-subtitle">
+          A quick live snapshot of what I’m actively working on.
+        </p>
+      </div>
+
+      <div class="right-sidecar-header-actions">
+        <div class="right-sidecar-updated" id="right-sidecar-updated">Updated recently</div>
+        <button id="right-sidecar-close" aria-label="Close live panel">✕</button>
+      </div>
+    </div>
+
+    <div class="right-sidecar-list" id="right-sidecar-list"></div>
+  </div>
+</aside>
     <!-- Resume Modal -->
     <div id="resume-modal" class="resume-modal" aria-hidden="true">
         <div class="resume-backdrop" data-close="resume-modal"></div>

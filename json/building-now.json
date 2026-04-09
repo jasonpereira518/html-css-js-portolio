@@ -1,0 +1,32 @@
+{
+  "eyebrow": "Live",
+  "title": "What I’m Building Now",
+  "subtitle": "A live list of the projects, experiments, and ideas I’m actively working on.",
+  "lastUpdated": "2026-03-29",
+  "items": [
+    {
+      "status": "In Progress",
+      "name": "Case Closed v2",
+      "description": "Improving citation mapping, reasoning quality, and trust in AI-generated legal analysis.",
+      "link": "#projects"
+    },
+    {
+      "status": "Shipping",
+      "name": "UNC P2P Transit Platform",
+      "description": "Designing a clearer live transit experience for students with stronger usability and ops visibility.",
+      "link": "#projects"
+    },
+    {
+      "status": "Exploring",
+      "name": "Quant Research Tools",
+      "description": "Testing lightweight workflows for market analysis, signal evaluation, and strategy research.",
+      "link": "#about"
+    },
+    {
+      "status": "In Progress",
+      "name": "Portfolio Improvements",
+      "description": "Making this site more dynamic, recruiter-friendly, and easier to update from structured data.",
+      "link": "#top"
+    }
+  ]
+}
