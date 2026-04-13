@@ -1521,6 +1521,11 @@ footer p {
   z-index: 2;
 }
 
+.experience-logo {
+    border-radius: 10px;
+    object-fit: cover;
+}
+
 /* Typewriter Effect */
 #typewriter {
   display: inline-block;
