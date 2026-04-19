@@ -817,6 +817,40 @@ document.addEventListener("DOMContentLoaded", () => {
   updateTicker();
 });
 
+// ===== Mouse Dot Glow Background =====
+document.addEventListener("DOMContentLoaded", () => {
+  if (!window.matchMedia("(pointer: fine)").matches) return;
+  if (document.querySelector(".mouse-dot-glow")) return;
+
+  const glowLayer = document.createElement("div");
+  glowLayer.className = "mouse-dot-glow";
+  document.body.prepend(glowLayer);
+
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let rafId = null;
+
+  const paintGlow = () => {
+    document.documentElement.style.setProperty("--mouse-x", `${mouseX}px`);
+    document.documentElement.style.setProperty("--mouse-y", `${mouseY}px`);
+    rafId = null;
+  };
+
+  window.addEventListener(
+    "mousemove",
+    (event) => {
+      mouseX = event.clientX;
+      mouseY = event.clientY;
+      if (!rafId) {
+        rafId = requestAnimationFrame(paintGlow);
+      }
+    },
+    { passive: true }
+  );
+
+  paintGlow();
+});
+
 /*
 document.addEventListener("DOMContentLoaded", () => {
   const ticker = document.getElementById("work-ticker");
@@ -910,4 +944,3 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 */
-
