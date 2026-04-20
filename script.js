@@ -826,9 +826,10 @@ document.addEventListener("DOMContentLoaded", () => {
   glowLayer.className = "mouse-dot-glow";
   document.body.prepend(glowLayer);
 
-  let mouseX = window.innerWidth / 2;
-  let mouseY = window.innerHeight / 2;
+  let mouseX = -9999;
+  let mouseY = -9999;
   let rafId = null;
+  let hasCursor = false;
 
   const paintGlow = () => {
     document.documentElement.style.setProperty("--mouse-x", `${mouseX}px`);
@@ -841,6 +842,10 @@ document.addEventListener("DOMContentLoaded", () => {
     (event) => {
       mouseX = event.clientX;
       mouseY = event.clientY;
+      if (!hasCursor) {
+        hasCursor = true;
+        glowLayer.classList.add("is-active");
+      }
       if (!rafId) {
         rafId = requestAnimationFrame(paintGlow);
       }
@@ -848,7 +853,15 @@ document.addEventListener("DOMContentLoaded", () => {
     { passive: true }
   );
 
-  paintGlow();
+  window.addEventListener("mouseleave", () => {
+    hasCursor = false;
+    glowLayer.classList.remove("is-active");
+    mouseX = -9999;
+    mouseY = -9999;
+    if (!rafId) {
+      rafId = requestAnimationFrame(paintGlow);
+    }
+  });
 });
 
 /*

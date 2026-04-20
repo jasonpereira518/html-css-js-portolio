@@ -23,8 +23,8 @@ html {
 }
 
 :root {
-    --mouse-x: 50vw;
-    --mouse-y: 50vh;
+    --mouse-x: -9999px;
+    --mouse-y: -9999px;
 }
 
 .mouse-dot-glow {
@@ -32,9 +32,10 @@ html {
     inset: 0;
     z-index: -1;
     pointer-events: none;
-    background-image: radial-gradient(rgba(147, 197, 253, 0.85) 1px, transparent 1.7px);
+    background-image: radial-gradient(rgba(125, 125, 125, 0.72) 1px, transparent 1.7px);
     background-size: 18px 18px;
-    opacity: 0.6;
+    opacity: 0;
+    transition: opacity 180ms ease;
     -webkit-mask-image: radial-gradient(
         440px circle at var(--mouse-x) var(--mouse-y),
         rgba(0, 0, 0, 1) 0%,
@@ -51,16 +52,20 @@ html {
     );
 }
 
+.mouse-dot-glow.is-active {
+    opacity: 0.6;
+}
+
 .mouse-dot-glow::before {
     content: "";
     position: absolute;
     inset: 0;
     background: radial-gradient(
         560px circle at var(--mouse-x) var(--mouse-y),
-        rgba(59, 130, 246, 0.28) 0%,
-        rgba(99, 102, 241, 0.24) 32%,
-        rgba(139, 92, 246, 0.2) 53%,
-        rgba(67, 56, 202, 0.08) 70%,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(205, 205, 205, 0.16) 34%,
+        rgba(135, 135, 135, 0.12) 56%,
+        rgba(30, 30, 30, 0.08) 72%,
         transparent 82%
     );
 }
