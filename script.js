@@ -326,6 +326,10 @@ document.addEventListener("DOMContentLoaded", () => {
   let hideTimer = null;
   let lastPointerX = 0;
   let lastPointerY = 0;
+  const PREVIEW_MAX_WIDTH = 360;
+  const PREVIEW_MAX_HEIGHT = 300;
+  const PREVIEW_FALLBACK_WIDTH = 280;
+  const PREVIEW_FALLBACK_HEIGHT = 210;
 
   const clearHideTimer = () => {
     if (hideTimer) {
@@ -335,6 +339,21 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const isVideoSrc = (src) => /\.(mp4|webm|ogg|mov|m4v)(\?.*)?$/i.test(src || "");
+
+  const setPreviewSizeFromMedia = (mediaWidth, mediaHeight) => {
+    const width = Number(mediaWidth) || PREVIEW_FALLBACK_WIDTH;
+    const height = Number(mediaHeight) || PREVIEW_FALLBACK_HEIGHT;
+    const scale = Math.min(1, PREVIEW_MAX_WIDTH / width, PREVIEW_MAX_HEIGHT / height);
+    const targetWidth = Math.round(width * scale);
+    const targetHeight = Math.round(height * scale);
+
+    preview.style.width = `${targetWidth}px`;
+    preview.style.height = `${targetHeight}px`;
+
+    if (activeCard && preview.classList.contains("is-visible")) {
+      placePreview(activeCard, lastPointerX, lastPointerY);
+    }
+  };
 
   const setPreviewMedia = (card) => {
     const fallbackImg = card.querySelector(".project-img");
@@ -350,6 +369,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (previewVideo.src !== explicitSrc) previewVideo.src = explicitSrc;
       previewVideo.hidden = false;
       previewImg.hidden = true;
+      if (previewVideo.videoWidth && previewVideo.videoHeight) {
+        setPreviewSizeFromMedia(previewVideo.videoWidth, previewVideo.videoHeight);
+      } else {
+        setPreviewSizeFromMedia(PREVIEW_FALLBACK_WIDTH, PREVIEW_FALLBACK_HEIGHT);
+      }
       previewVideo.play().catch(() => {});
     } else {
       if (previewImg.src !== explicitSrc) previewImg.src = explicitSrc;
@@ -358,16 +382,38 @@ document.addEventListener("DOMContentLoaded", () => {
       previewVideo.pause();
       previewVideo.removeAttribute("src");
       previewVideo.load();
+      if (previewImg.naturalWidth && previewImg.naturalHeight) {
+        setPreviewSizeFromMedia(previewImg.naturalWidth, previewImg.naturalHeight);
+      } else if (fallbackImg && fallbackImg.naturalWidth && fallbackImg.naturalHeight) {
+        setPreviewSizeFromMedia(fallbackImg.naturalWidth, fallbackImg.naturalHeight);
+      } else {
+        setPreviewSizeFromMedia(PREVIEW_FALLBACK_WIDTH, PREVIEW_FALLBACK_HEIGHT);
+      }
     }
 
     if (previewTitle) {
       const titleEl = card.querySelector(".project-title");
-      const text = titleEl ? titleEl.textContent : "";
+      const marqueeTextEl = titleEl ? titleEl.querySelector(".marquee-text") : null;
+      const text = marqueeTextEl
+        ? marqueeTextEl.textContent
+        : (titleEl ? titleEl.textContent : "");
       previewTitle.textContent = (text || "").trim();
     }
 
     return true;
   };
+
+  previewImg.addEventListener("load", () => {
+    if (previewImg.naturalWidth && previewImg.naturalHeight) {
+      setPreviewSizeFromMedia(previewImg.naturalWidth, previewImg.naturalHeight);
+    }
+  });
+
+  previewVideo.addEventListener("loadedmetadata", () => {
+    if (previewVideo.videoWidth && previewVideo.videoHeight) {
+      setPreviewSizeFromMedia(previewVideo.videoWidth, previewVideo.videoHeight);
+    }
+  });
 
   const placePreview = (card, pointerX = null, pointerY = null) => {
     const cardRect = card.getBoundingClientRect();

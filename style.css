@@ -1310,8 +1310,10 @@ article .skill-text p {
   position: fixed;
   top: 0;
   left: 0;
-  width: clamp(260px, 27vw, 420px);
-  aspect-ratio: 16 / 10;
+  width: 280px;
+  height: 210px;
+  max-width: min(360px, 30vw);
+  max-height: min(300px, 38vh);
   border-radius: 1.2rem;
   overflow: hidden;
   border: 1px solid rgba(145, 145, 155, 0.22);
