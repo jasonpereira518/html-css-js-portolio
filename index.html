@@ -719,9 +719,16 @@
             <button class="filter-btn" data-filter="hackathon">Hackathon</button>
             <button class="filter-btn" data-filter="coming">Coming Soon</button>
         </div>
+        <div id="project-hover-preview" aria-hidden="true">
+            <div class="project-hover-preview__media">
+                <img id="project-hover-preview-image" class="project-hover-preview__image" alt="Project preview media">
+                <video id="project-hover-preview-video" class="project-hover-preview__video" hidden muted loop playsinline preload="metadata"></video>
+            </div>
+            <p id="project-hover-preview-title" class="project-hover-preview__title"></p>
+        </div>
         <div class="projects-grid"> 
             <!-- Row 1 -->
-            <div class="details-container color-container project-card project-card--winner" data-cat="web data hackathon" data-video-src="./assets/videos/caseclosed_teaservid.mp4">
+            <div class="details-container color-container project-card project-card--winner" data-cat="web data hackathon" data-preview-src="./assets/videos/caseclosed_teaservid.mp4" data-preview-type="video">
                 <div class="project-ribbon">
                     1st Place · Duke AI Hackathon
                 </div>
@@ -738,7 +745,7 @@
                         Skit</button>
                 </div>
             </div>
-            <div class="details-container color-container project-card" data-cat="web data hackathon">
+            <div class="details-container color-container project-card" data-cat="web data hackathon" data-preview-src="./assets/polymarketScreenshot.png" data-preview-type="image">
                 <div class="article-container">
                     <img src="./assets/polymarketScreenshot.png" alt="Project 2" class="project-img">
                 </div>
@@ -779,7 +786,7 @@
                         Website</button>
                 </div>
             </div>
-            <div class="details-container color-container project-card" data-cat="web coming" data-video-src="./assets/videos/p2plive-peek.mp4">
+            <div class="details-container color-container project-card" data-cat="web coming" data-preview-src="./assets/videos/p2plive-peek.mp4" data-preview-type="video">
                 <div class="article-container">
                     <img src="./assets/p2plive-logo.png" alt="Project 5" class="project-img">
                 </div>
@@ -806,7 +813,7 @@
                 </div>
             </div>
             <!-- Row 3 -->
-            <div class="details-container color-container project-card" data-cat="data web hackathon" data-video-src="./assets/videos/projectgoldilocks_demovid.mp4">
+            <div class="details-container color-container project-card" data-cat="data web hackathon" data-preview-src="./assets/videos/projectgoldilocks_demovid.mp4" data-preview-type="video">
                 <div class="article-container">
                     <img src="./assets/GoldilocksThumbnail.png" alt="Project 7" class="project-img">
                 </div>
@@ -819,7 +826,7 @@
                         onclick="window.open('https://orbit-notes.streamlit.app/', '_blank')">Live Demo</button>
                 </div>
             </div>
-            <div class="details-container color-container project-card" data-cat="coming web" data-video-src="./assets/videos/tarheeleats_demovid.mp4">
+            <div class="details-container color-container project-card" data-cat="coming web" data-preview-src="./assets/videos/tarheeleats_demovid.mp4" data-preview-type="video">
                 <div class="article-container">
                     <img src="./assets/TarHeelEats.png" alt="Project 8" class="project-img">
                 </div>
@@ -862,7 +869,7 @@
                         Demo</button>
                 </div>
             </div>
-            <div class="details-container color-container project-card" data-cat="data" data-video-src="./assets/videos/objectdetection_demovid.mp4">
+            <div class="details-container color-container project-card" data-cat="data" data-preview-src="./assets/videos/objectdetection_demovid.mp4" data-preview-type="video">
                 <div class="article-container">
                     <img src="./assets/Object_detection.png" alt="Project 11" class="project-img">
                 </div>
@@ -1442,6 +1449,47 @@
         }
         });
         </script>
+
+    <!-- Terminal Takeover Overlay -->
+    <div id="terminal-overlay" class="terminal-overlay" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="terminal-title">
+        <div class="terminal-crt" aria-hidden="true"></div>
+        <div class="terminal-scanlines" aria-hidden="true"></div>
+        <div id="terminal-intro" class="terminal-intro" aria-live="polite" aria-hidden="true">
+            <div class="terminal-intro-grid" aria-hidden="true"></div>
+            <div class="terminal-intro-noise" aria-hidden="true"></div>
+            <div class="terminal-intro-sweep" aria-hidden="true"></div>
+            <div class="terminal-intro-copy">
+                <p id="terminal-intro-line1" class="terminal-intro-line terminal-intro-line--major"></p>
+                <p id="terminal-intro-line2" class="terminal-intro-line"></p>
+                <p id="terminal-intro-line3" class="terminal-intro-line terminal-intro-line--minor"></p>
+            </div>
+        </div>
+        <div class="terminal-shell">
+            <header class="terminal-header">
+                <h2 id="terminal-title">System Access Console</h2>
+                <p class="terminal-subtitle">Portfolio Intrusion Interface • Read-Only</p>
+            </header>
+
+            <section id="terminal-boot" class="terminal-boot" aria-live="polite"></section>
+            <section id="terminal-output" class="terminal-output" aria-live="polite"></section>
+
+            <footer class="terminal-footer">
+                <div class="terminal-prompt-row">
+                    <span class="terminal-prompt" id="terminal-prompt-label">visitor@jason:~$</span>
+                    <input
+                        id="terminal-input"
+                        class="terminal-input"
+                        type="text"
+                        autocomplete="off"
+                        spellcheck="false"
+                        aria-label="Terminal command input"
+                        placeholder="type 'help' and press enter"
+                    />
+                </div>
+                <p id="terminal-status" class="terminal-status">Press <kbd>/</kbd> to toggle terminal • Press <kbd>Esc</kbd> to close</p>
+            </footer>
+        </div>
+    </div>
 
     <!-- Jason Mode Note -->
     <div class="jason-mode-note">
