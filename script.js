@@ -525,6 +525,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const EDGE_TRIGGER_PX = 38;
   const PEEK_HIDE_MS = 1000;
+  const LIVE_REFRESH_MS = 60000;
 
   let isOpen = false;
   let isPeeking = false;
@@ -543,7 +544,7 @@ document.addEventListener("DOMContentLoaded", () => {
     isPeeking = true;
     panel.classList.add("peeking");
     panel.classList.remove("open");
-    panel.setAttribute("aria-hidden", "true");
+    panel.setAttribute("aria-hidden", "false");
     overlay.classList.remove("visible");
   }
 
@@ -570,6 +571,7 @@ document.addEventListener("DOMContentLoaded", () => {
     panel.classList.add("open");
     panel.setAttribute("aria-hidden", "false");
     overlay.classList.add("visible");
+    loadRightSidecarData(listEl, updatedEl);
   }
 
   function closePanel() {
@@ -578,7 +580,7 @@ document.addEventListener("DOMContentLoaded", () => {
     isPeeking = true;
     panel.classList.remove("open");
     panel.classList.add("peeking");
-    panel.setAttribute("aria-hidden", "true");
+    panel.setAttribute("aria-hidden", "false");
     overlay.classList.remove("visible");
     scheduleHide();
   }
@@ -597,6 +599,13 @@ document.addEventListener("DOMContentLoaded", () => {
   peek.addEventListener("click", (e) => {
     e.stopPropagation();
     openPanel();
+  });
+
+  panel.addEventListener("click", (e) => {
+    if (!isOpen) {
+      e.stopPropagation();
+      openPanel();
+    }
   });
 
   closeBtn?.addEventListener("click", (e) => {
@@ -629,7 +638,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  loadRightSidecarData(listEl, updatedEl);
+  const refreshRightSidecarData = () => loadRightSidecarData(listEl, updatedEl);
+  refreshRightSidecarData();
+  window.setInterval(refreshRightSidecarData, LIVE_REFRESH_MS);
 });
 
 async function loadRightSidecarData(listEl, updatedEl) {

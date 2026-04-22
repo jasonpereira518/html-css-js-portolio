@@ -636,15 +636,16 @@ section {
   --rsc-radius: 26px;
   --rsc-gap: 18px;
   --rsc-peek-width: 4px; /* only a tiny sliver visible */
+  --rsc-peek-reveal: 20px; /* subtle visible strip on edge hover */
   --rsc-z: 5000;
 }
 
 #right-sidecar-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.12);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.28s ease;
@@ -673,7 +674,7 @@ section {
 }
 
 #right-sidecar.peeking {
-  transform: translate(0, -50%);
+  transform: translate(calc(100% - var(--rsc-peek-reveal)), -50%);
   pointer-events: auto;
   opacity: 1;
 }
@@ -710,11 +711,13 @@ section {
 }
 
 #right-sidecar.peeking .right-sidecar-card {
-  pointer-events: none;
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 #right-sidecar.open .right-sidecar-card {
   pointer-events: auto;
+  cursor: default;
 }
 
 #right-sidecar-peek {
@@ -739,6 +742,10 @@ section {
 #right-sidecar.open #right-sidecar-peek {
   opacity: 1;
   pointer-events: auto;
+}
+
+#right-sidecar.peeking #right-sidecar-peek {
+  opacity: 0.75;
 }
 
 #right-sidecar-peek:hover {
