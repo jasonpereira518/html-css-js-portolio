@@ -784,6 +784,51 @@ document.addEventListener("mouseenter", () => {
   cursor.style.opacity = 1; // show again when it re-enters
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+  const skillItems = document.querySelectorAll("#skills .skill-item");
+  if (!skillItems.length) return;
+
+  let activeSkillItem = null;
+  const cursorIcon = document.createElement("div");
+  cursorIcon.className = "skill-cursor-icon";
+  document.body.appendChild(cursorIcon);
+
+  const placeCursorIcon = (event) => {
+    cursorIcon.style.left = `${event.clientX}px`;
+    cursorIcon.style.top = `${event.clientY}px`;
+  };
+
+  skillItems.forEach((item) => {
+    item.addEventListener("mouseenter", (event) => {
+      const skillIcon = item.querySelector(".skill-icon");
+      if (!skillIcon) return;
+      activeSkillItem = item;
+      cursorIcon.innerHTML = "";
+      cursorIcon.appendChild(skillIcon.cloneNode(true));
+      placeCursorIcon(event);
+      cursorIcon.classList.add("is-visible");
+    });
+
+    item.addEventListener("mousemove", (event) => {
+      if (activeSkillItem !== item) return;
+      placeCursorIcon(event);
+    });
+
+    item.addEventListener("mouseleave", () => {
+      if (activeSkillItem !== item) return;
+      activeSkillItem = null;
+      cursorIcon.classList.remove("is-visible");
+    });
+  });
+
+  window.addEventListener("mouseleave", () => {
+    activeSkillItem = null;
+    cursorIcon.classList.remove("is-visible");
+  });
+});
+
 
 document.addEventListener("DOMContentLoaded", async () => {
   const el = document.getElementById("last-updated");
@@ -857,6 +902,38 @@ function activateLink() {
 }
 
 window.addEventListener('scroll', activateLink);
+
+// Magnetic nav links (desktop / fine pointer only)
+document.addEventListener("DOMContentLoaded", () => {
+  // Keep this desktop-only so mobile nav remains stable/tappable.
+  if (window.innerWidth <= 900) return;
+
+  const magneticItems = document.querySelectorAll("#desktop-nav .nav-links li");
+  const maxPullPx = 7;
+
+  magneticItems.forEach((item) => {
+    item.addEventListener("mousemove", (event) => {
+      const rect = item.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const offsetX = event.clientX - centerX;
+      const offsetY = event.clientY - centerY;
+
+      const limitedX = Math.max(-maxPullPx, Math.min(maxPullPx, offsetX * 0.24));
+      const limitedY = Math.max(-maxPullPx, Math.min(maxPullPx, offsetY * 0.24));
+
+      item.style.setProperty("--magnetic-x", `${limitedX.toFixed(2)}px`);
+      item.style.setProperty("--magnetic-y", `${limitedY.toFixed(2)}px`);
+    });
+
+    const resetMagnet = () => {
+      item.style.setProperty("--magnetic-x", "0px");
+      item.style.setProperty("--magnetic-y", "0px");
+    };
+
+    item.addEventListener("mouseleave", resetMagnet);
+  });
+});
 // ===== Certifications Show More / Less =====
 document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.getElementById("certs-toggle-btn");

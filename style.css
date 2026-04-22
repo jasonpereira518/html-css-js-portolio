@@ -100,11 +100,20 @@ nav {
     list-style: none;
     font-size: 1.5rem;
 }
+.nav-links li {
+  --magnetic-x: 0px;
+  --magnetic-y: 0px;
+  transform: translate3d(var(--magnetic-x), var(--magnetic-y), 0);
+  transition: transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: transform;
+}
 .nav-links a {
+  display: inline-block;
   position: relative;
   text-decoration: none;
   color: black;
   padding-bottom: 6px;
+  transition: color 300ms ease;
 }
 
 .nav-links a:hover {
@@ -1218,6 +1227,44 @@ article .skill-text {
 article .skill-text h3,
 article .skill-text p {
   margin: 0;
+}
+
+.skill-cursor-icon {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  z-index: 11000;
+  opacity: 0;
+  transform: translate3d(14px, 14px, 0) scale(0.85);
+  transition: opacity 120ms ease, transform 120ms ease;
+}
+
+.skill-cursor-icon.is-visible {
+  opacity: 1;
+  transform: translate3d(14px, 14px, 0) scale(1);
+}
+
+.skill-cursor-icon .skill-icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+}
+
+.skill-cursor-icon .skill-icon i {
+  font-size: 34px;
+  line-height: 1;
+}
+
+.skill-cursor-icon .skill-icon img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
 }
 
 /* ===== Nav Contact Icon ===== */

@@ -290,6 +290,170 @@
       padding-top: 14vh;
       height: auto;
     }
+
+    /* ===== Floating MacBook (Jason Mode) ===== */
+    .jason-floating-macbook {
+      position: fixed;
+      bottom: calc(50vh + 12px);
+      right: 22px;
+      width: clamp(130px, 16vw, 220px);
+      height: clamp(96px, 11vw, 165px);
+      background: transparent;
+      border: none;
+      pointer-events: none;
+      z-index: 3200;
+      animation: jason-macbook-hover 4.5s ease-in-out infinite;
+      overflow: visible;
+    }
+    .jason-floating-macbook::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -9px;
+      width: 78%;
+      height: 14px;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.33) 0%, rgba(0, 0, 0, 0.05) 68%, rgba(0, 0, 0, 0) 100%);
+      filter: blur(3px);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .jason-floating-macbook canvas {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      display: block;
+      filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.2));
+    }
+    .jason-floating-macbook-fallback {
+      display: grid;
+      place-items: center;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      color: rgba(0, 0, 0, 0.55);
+      font-size: 0.8rem;
+      font-family: "Poppins", sans-serif;
+    }
+    .jason-floating-macbook.model-ready .jason-floating-macbook-fallback {
+      display: none;
+    }
+    @keyframes jason-macbook-hover {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    @media (max-width: 920px) {
+      .jason-floating-macbook {
+        width: clamp(96px, 28vw, 138px);
+        height: clamp(72px, 20vw, 102px);
+        bottom: calc(50vh + 8px);
+        right: 16px;
+      }
+    }
+
+    /* ===== Bottom Mac-Style Dock ===== */
+    .jmode-dock {
+      position: fixed;
+      left: 50%;
+      bottom: calc(var(--ticker-height, 2.4rem) + 1rem);
+      transform: translateX(-50%);
+      z-index: 5400;
+      display: flex;
+      align-items: flex-end;
+      gap: 0.62rem;
+      padding: 0.42rem 1.1rem 0.48rem;
+      border-radius: 1.1rem;
+      background: rgba(248, 248, 250, 0.78);
+      border: 1px solid rgba(0, 0, 0, 0.11);
+      backdrop-filter: blur(18px) saturate(1.5);
+      -webkit-backdrop-filter: blur(18px) saturate(1.5);
+      box-shadow:
+        0 14px 32px rgba(0, 0, 0, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.92);
+    }
+    .jmode-dock__item {
+      --dock-scale: 1;
+      --dock-lift: 0px;
+      width: 2.7rem;
+      height: 2.7rem;
+      border-radius: 0.9rem;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(0, 0, 0, 0.09);
+      display: grid;
+      place-items: center;
+      transform: translateY(var(--dock-lift)) scale(var(--dock-scale));
+      transition: transform 0.16s ease, background 0.16s ease, border-color 0.16s ease;
+      will-change: transform;
+      text-decoration: none;
+      position: relative;
+    }
+    .jmode-dock__item:hover {
+      background: rgba(255, 255, 255, 0.98);
+      border-color: rgba(0, 0, 0, 0.14);
+    }
+    .jmode-dock__item:focus,
+    .jmode-dock__item:focus-visible {
+      outline: none;
+      border-color: rgba(0, 0, 0, 0.14);
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+    }
+    .jmode-dock__item img {
+      width: 1.55rem;
+      height: 1.55rem;
+      object-fit: contain;
+      border-radius: 0.45rem;
+      display: block;
+    }
+    .jmode-dock__divider {
+      width: 1px;
+      height: 2rem;
+      margin: 0 0.2rem;
+      background: rgba(0, 0, 0, 0.14);
+      border-radius: 999px;
+    }
+    .jmode-dock__item::after {
+      content: attr(data-label);
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 0.42rem);
+      transform: translateX(-50%) translateY(3px);
+      opacity: 0;
+      pointer-events: none;
+      white-space: nowrap;
+      font-size: 0.64rem;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.74);
+      background: rgba(248, 248, 250, 0.96);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 0.45rem;
+      padding: 0.18rem 0.4rem;
+      transition: opacity 0.14s ease, transform 0.14s ease;
+    }
+    .jmode-dock__item:hover::after {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    @media (max-width: 880px) {
+      .jmode-dock {
+        gap: 0.48rem;
+        padding: 0.34rem 0.78rem 0.38rem;
+        border-radius: 0.95rem;
+        bottom: calc(var(--ticker-height, 2.1rem) + 0.75rem);
+      }
+      .jmode-dock__item {
+        width: 2.35rem;
+        height: 2.35rem;
+        border-radius: 0.75rem;
+      }
+      .jmode-dock__item img {
+        width: 1.32rem;
+        height: 1.32rem;
+      }
+      .jmode-dock__divider {
+        height: 1.65rem;
+      }
+    }
   </style>
 </head>
 
@@ -480,6 +644,12 @@
       </ul>
     </div>
   </nav>
+  <div
+    id="jason-floating-macbook"
+    class="jason-floating-macbook"
+    aria-label="Floating 3D MacBook model"
+    role="img"
+  ></div>
 
   <!-- ===== MAIN CONTENT ===== -->
   <section id="jason-mode">
@@ -610,12 +780,64 @@
   </div>
 </div>
 
+  <nav class="jmode-dock" aria-label="Quick links toolbar">
+    <a class="jmode-dock__item" data-label="Email" href="mailto:jasonpereira518@gmail.com" aria-label="Email Jason">
+      <img src="../assets/email.png" alt="Email icon">
+    </a>
+    <a class="jmode-dock__item" data-label="LinkedIn" href="https://www.linkedin.com/in/jasonpereira518/" target="_blank" rel="noopener" aria-label="Open LinkedIn profile">
+      <img src="../assets/linkedin.png" alt="LinkedIn icon">
+    </a>
+    <a class="jmode-dock__item" data-label="GitHub" href="https://github.com/jasonpereira518" target="_blank" rel="noopener" aria-label="Open GitHub profile">
+      <img src="../assets/github.png" alt="GitHub icon">
+    </a>
+    <span class="jmode-dock__divider" aria-hidden="true"></span>
+    <a class="jmode-dock__item" data-label="Portfolio" href="../index.html" aria-label="Back to main portfolio">
+      <img src="../assets/jabout-pic-modified.png" alt="Portfolio icon">
+    </a>
+  </nav>
+
   <footer id="footer" style="margin-top:8rem;">
     <p>Press <span style="color:#4B9CD3"><strong>"J"</strong></span> anywhere to return to the main site.</p>
     <p>Copyright &#169; 2026 Jason Pereira. All Rights Reserved</p>
   </footer>
 
   <!-- ===== SCRIPTS ===== -->
+  <script>
+    // Bottom dock magnification interaction
+    document.addEventListener("DOMContentLoaded", () => {
+      const dock = document.querySelector(".jmode-dock");
+      if (!dock) return;
+      const items = Array.from(dock.querySelectorAll(".jmode-dock__item"));
+
+      function resetDock() {
+        items.forEach((item) => {
+          item.style.setProperty("--dock-scale", "1");
+          item.style.setProperty("--dock-lift", "0px");
+        });
+      }
+
+      items.forEach((item) => {
+        item.addEventListener("mouseenter", () => {
+          resetDock();
+          item.style.setProperty("--dock-scale", "1.24");
+          item.style.setProperty("--dock-lift", "-6px");
+        });
+
+        item.addEventListener("focus", () => {
+          resetDock();
+          item.style.setProperty("--dock-scale", "1.24");
+          item.style.setProperty("--dock-lift", "-6px");
+        });
+      });
+
+      dock.addEventListener("mouseleave", resetDock);
+      dock.addEventListener("focusout", () => {
+        const active = document.activeElement;
+        if (!active || !dock.contains(active)) resetDock();
+      });
+    });
+  </script>
+
   <script>
     // Sidebar
     const sidebar   = document.getElementById("jason-sidebar");
@@ -767,6 +989,109 @@
       }
 
       imgs.forEach(img => img.addEventListener("click", () => openImg(img)));
+    });
+  </script>
+
+  <script src="../assets/vendor/three/three.min.js"></script>
+  <script src="../assets/vendor/three/GLTFLoader.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const mount = document.getElementById("jason-floating-macbook");
+      if (!mount || !window.THREE || !THREE.GLTFLoader) return;
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setSize(mount.clientWidth, mount.clientHeight);
+      renderer.setClearColor(0x000000, 0);
+      renderer.outputEncoding = THREE.sRGBEncoding;
+      mount.appendChild(renderer.domElement);
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(30, mount.clientWidth / mount.clientHeight, 0.01, 100);
+      const introStartZ = 4.15;
+      const introEndZ = 3.25;
+      const introZoomDurationMs = 1100;
+      camera.position.set(0, 0.66, introStartZ);
+
+      scene.add(new THREE.AmbientLight(0xffffff, 0.95));
+      const keyLight = new THREE.DirectionalLight(0xffffff, 1.05);
+      keyLight.position.set(2.2, 2.8, 2.5);
+      scene.add(keyLight);
+      const leftBlastLight = new THREE.DirectionalLight(0xffffff, 2.7);
+      leftBlastLight.position.set(-3.8, 1.6, 2.4);
+      scene.add(leftBlastLight);
+      const fillLight = new THREE.DirectionalLight(0xaecfff, 0.45);
+      fillLight.position.set(-2.2, 1.2, -1.8);
+      scene.add(fillLight);
+
+      const rig = new THREE.Group();
+      scene.add(rig);
+
+      const loader = new THREE.GLTFLoader();
+      loader.load(
+        "../assets/models/macbook_pro_14in.glb",
+        (gltf) => {
+          const model = gltf.scene;
+          const box = new THREE.Box3().setFromObject(model);
+          const size = box.getSize(new THREE.Vector3());
+          const center = box.getCenter(new THREE.Vector3());
+          model.position.sub(center);
+          model.position.x += 0.05;
+          model.position.y += 0.08;
+          const maxAxis = Math.max(size.x, size.y, size.z) || 1;
+          model.scale.setScalar(1.38 / maxAxis);
+          rig.add(model);
+          mount.classList.add("model-ready");
+        },
+        undefined,
+        () => {
+          mount.classList.remove("model-ready");
+        }
+      );
+
+      const spinStrength = 0.0018;
+      const baseYaw = -0.86;
+      const basePitch = -0.12;
+      const baseRoll = 0.03;
+      const idleDelayMs = 2000;
+      const idleSpinStep = 0.0016;
+      let spinTarget = window.scrollY * spinStrength;
+      let spinCurrent = spinTarget;
+      let lastScrollAt = performance.now();
+
+      function handleScroll() {
+        spinTarget = window.scrollY * spinStrength;
+        lastScrollAt = performance.now();
+      }
+      window.addEventListener("scroll", handleScroll, { passive: true });
+
+      function onResize() {
+        const w = mount.clientWidth;
+        const h = mount.clientHeight;
+        renderer.setSize(w, h);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+      }
+      window.addEventListener("resize", onResize);
+
+      let introStartedAt = null;
+      function animate(now) {
+        if (introStartedAt === null) introStartedAt = now;
+        const introProgress = Math.min(1, (now - introStartedAt) / introZoomDurationMs);
+        const introEase = 1 - Math.pow(1 - introProgress, 3);
+        camera.position.z = introStartZ + (introEndZ - introStartZ) * introEase;
+
+        if (now - lastScrollAt >= idleDelayMs) {
+          spinTarget += idleSpinStep;
+        }
+        spinCurrent += (spinTarget - spinCurrent) * 0.05;
+        rig.rotation.y = baseYaw + spinCurrent;
+        rig.rotation.x = basePitch;
+        rig.rotation.z = baseRoll;
+        renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+      }
+      requestAnimationFrame(animate);
     });
   </script>
 
