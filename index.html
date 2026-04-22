@@ -372,9 +372,18 @@
         <h1 class="title">About Me</h1>
         <div class="section-container">
             <div class="section__pic-container">
-                <img src="./assets/jabout-pic.JPEG" alt="Profile picture" class="about-pic" data-aos="zoom-in">
+                <div
+                    id="about-phone-viewer"
+                    class="about-phone-3d"
+                    data-model-src="./assets/models/iphone17pro.glb"
+                    data-aos="zoom-in"
+                    aria-label="Interactive 3D iPhone 17 Pro model"
+                    role="img"
+                >
+                    <p class="about-phone-fallback" aria-live="polite">Loading 3D model...</p>
+                </div>
             </div>
-            <div class="about-details-container">
+            <div class="about-details-container" style="margin-top: -5rem;">
                 <div class="about-containers">
                     <div class="details-container">
                         <img src="./assets/experience.png" alt="Experience icon" class="icon">
@@ -1496,6 +1505,18 @@
         Click the <span class="key-hint">"J"</span> key to enter <strong>Jason Mode</strong>
     </div>
     <script src="script.js"></script>
+    <script>
+      window.setTimeout(() => {
+        const mount = document.getElementById("about-phone-viewer");
+        if (!mount || mount.dataset.viewerBooted === "1" || mount.classList.contains("is-loaded")) return;
+        mount.classList.add("model-unavailable");
+        const fallback = mount.querySelector(".about-phone-fallback");
+        if (fallback) {
+          fallback.textContent = "3D module did not start. Check internet access for CDN files and open this site through a local/web server.";
+        }
+      }, 4500);
+    </script>
+    <script src="./about-iphone-viewer.js"></script>
 </body>
 
 </html>

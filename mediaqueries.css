@@ -21,6 +21,9 @@
     #profile, .section-container {
         display: block;
     }
+    #about .section-container {
+        display: block;
+    }
 
     #profile {
         margin-top: 1rem;
@@ -39,6 +42,10 @@
         width: 275px;
         height: 275px;
         margin: 0 auto 2rem;
+    }
+    #about .section-container > .section__pic-container {
+        width: 280px;
+        height: 320px;
     }
     .about-containers {
         margin-top: 0;
@@ -84,6 +91,11 @@
         height: 46vw;
         justify-content: center;
     }
+    #about .section-container > .section__pic-container {
+        width: min(68vw, 260px);
+        height: min(76vw, 300px);
+        margin: 0 auto 1.2rem;
+    }
     .section__text__p2 {
         font-size: 1.25rem;
     }
@@ -95,5 +107,3 @@
         margin: .4rem;
     }
 }
-
-
