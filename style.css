@@ -371,6 +371,42 @@ section {
     margin-bottom: 2rem;
 }
 
+/* Animated gradient section headers */
+section:not(#profile) .title {
+    color: #0b0b0b; /* fallback */
+    background: repeating-linear-gradient(
+      120deg,
+      #0a0a0a 0%,
+      #132a78 16%,
+      #7f2bff 32%,
+      #c329b8 48%,
+      #0f4ca7 64%,
+      #0a0a0a 80%,
+      #132a78 96%
+    );
+    background-size: 200% auto;
+    background-position: 0% 50%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: sectionHeaderGradientShift 7s linear infinite;
+}
+
+@keyframes sectionHeaderGradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 200% 50%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    section:not(#profile) .title {
+        animation: none;
+    }
+}
+
 #socials-container {
     display: flex;
     justify-content: center;
