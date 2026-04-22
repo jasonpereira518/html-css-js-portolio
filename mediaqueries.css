@@ -46,6 +46,8 @@
     #about .section-container > .section__pic-container {
         width: 280px;
         height: 320px;
+        margin: 0 auto 1.4rem;
+        justify-self: center;
     }
     .about-containers {
         margin-top: 0;
@@ -95,6 +97,7 @@
         width: min(68vw, 260px);
         height: min(76vw, 300px);
         margin: 0 auto 1.2rem;
+        justify-self: center;
     }
     .section__text__p2 {
         font-size: 1.25rem;

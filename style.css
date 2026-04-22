@@ -1016,6 +1016,8 @@ section {
     justify-content: center;
     width: 100%;
     height: min(78vh, 760px);
+    margin: -4rem 0 0 -2.4rem;
+    justify-self: start;
 }
 
 .about-phone-3d {
