@@ -377,25 +377,37 @@ section:not(#profile) .title {
     background: repeating-linear-gradient(
       120deg,
       #0a0a0a 0%,
-      #132a78 16%,
-      #7f2bff 32%,
-      #c329b8 48%,
-      #0f4ca7 64%,
-      #0a0a0a 80%,
-      #132a78 96%
+      #0a0a0a 30%,
+      #132a78 38%,
+      #7f2bff 50%,
+      #c329b8 62%,
+      #0f4ca7 70%,
+      #0a0a0a 78%,
+      #0a0a0a 100%
     );
     background-size: 200% auto;
     background-position: 0% 50%;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: sectionHeaderGradientShift 7s linear infinite;
+    animation: sectionHeaderGradientShift 20s linear infinite;
+    animation-delay: 3s;
+}
+
+#jason-mode .title .title-emoji {
+    background: none;
+    -webkit-background-clip: border-box;
+    background-clip: border-box;
+    -webkit-text-fill-color: #0b0b0b;
+    color: #0b0b0b;
 }
 
 @keyframes sectionHeaderGradientShift {
-    0% {
+    0%,
+    20% {
         background-position: 0% 50%;
     }
+    80%,
     100% {
         background-position: 200% 50%;
     }
