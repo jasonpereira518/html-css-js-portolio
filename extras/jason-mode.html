@@ -708,9 +708,10 @@
         <div class="gallery-item"><img src="../assets/tedxunc.jpg"                 alt="TEDx Speaker"></div>
         <div class="gallery-item"><img src="../assets/marines_award.JPEG"          alt="Marines Award"></div>
 
+        <div class="gallery-item"><img src="../assets/nyc_quick_demo.jpeg"             alt="NCCTM Presentation"></div>
+        <div class="gallery-item"><img src="../assets/NCCTM_pres.JPEG"             alt="NCCTM Presentation"></div>
         <div class="gallery-item"><img src="../assets/jabout-pic.JPEG"             alt="Jason"></div>
         <div class="gallery-item"><img src="../assets/cory_levy.JPEG"              alt="Cory Levy"></div>
-        <div class="gallery-item"><img src="../assets/NCCTM_pres.JPEG"             alt="NCCTM Presentation"></div>
 
         <div class="gallery-item"><img src="../assets/microsoft_trek.JPG"          alt="Microsoft Tech Trek"></div>
 
@@ -968,24 +969,28 @@
 
       function openImg(img) {
         if (!overlay) buildOverlay();
-        const r = img.getBoundingClientRect();
         oImg.src = img.src; oImg.alt = img.alt || "";
-        oImg.style.cssText = `top:${r.top}px;left:${r.left}px;width:${r.width}px;height:${r.height}px;transform:scale(0.85)`;
         overlay.classList.add("visible");
         document.body.classList.add("modal-open");
-        const vw = window.innerWidth, vh = window.innerHeight, m = 40;
-        const asp = r.width / r.height || 1;
-        let tw = vw - m*2, th = tw / asp;
-        if (th > vh - m*2) { th = vh - m*2; tw = th * asp; }
-        void oImg.offsetWidth;
-        requestAnimationFrame(() => {
-          overlay.classList.add("open");
-          oImg.style.top    = (vh-th)/2 + "px";
-          oImg.style.left   = (vw-tw)/2 + "px";
-          oImg.style.width  = tw + "px";
-          oImg.style.height = th + "px";
-          oImg.style.transform = "scale(1)";
-        });
+
+        const show = () => {
+          const vw = window.innerWidth, vh = window.innerHeight, m = 40;
+          const asp = (img.naturalWidth && img.naturalHeight)
+            ? img.naturalWidth / img.naturalHeight
+            : 1;
+          let tw = vw - m*2, th = tw / asp;
+          if (th > vh - m*2) { th = vh - m*2; tw = th * asp; }
+          const top = (vh-th)/2, left = (vw-tw)/2;
+          oImg.style.cssText = `top:${top}px;left:${left}px;width:${tw}px;height:${th}px;transform:scale(0.85)`;
+          void oImg.offsetWidth;
+          requestAnimationFrame(() => {
+            overlay.classList.add("open");
+            oImg.style.transform = "scale(1)";
+          });
+        };
+
+        if (img.naturalWidth) show();
+        else img.addEventListener("load", show, { once: true });
       }
 
       imgs.forEach(img => img.addEventListener("click", () => openImg(img)));
